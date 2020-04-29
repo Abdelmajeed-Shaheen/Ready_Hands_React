@@ -1,31 +1,34 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-dark "
+      className="navbar navbar-expand-lg navbar-dark sticky-top"
       style={{ backgroundColor: "#00695c" }}
     >
-      <a className="navbar-brand" href="#">
-        Logo
-      </a>
+      <Link className="navbar-brand" to="/home">
+        <span style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}>
+          Ready Hands
+        </span>
+      </Link>
 
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item active">
-            <a className="nav-link" href="#">
+            <Link className="navbar-brand" to="/home">
               Home
-            </a>
+            </Link>
           </li>
           <li className="nav-item active">
-            <a className="nav-link" href="#">
+            <Link className="navbar-brand" to="/home">
               About Us
-            </a>
+            </Link>
           </li>
           <li className="nav-item active">
-            <a className="nav-link" href="#">
+            <Link className="navbar-brand" to="/login">
               Login
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

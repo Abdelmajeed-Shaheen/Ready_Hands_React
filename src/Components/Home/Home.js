@@ -1,6 +1,6 @@
 import React from "react";
-import worker from "../assets/images/worker.png";
-import user from "../assets/images/user.jpg";
+import worker from "../../assets/images/worker.png";
+import user from "../../assets/images/user.jpg";
 
 const Home = () => {
   return (
@@ -8,24 +8,19 @@ const Home = () => {
       <div className="row">
         <div className="col-6">
           <div className="home">
-            <div class="overlay-div"></div>
-            <img
-              src={user}
-              style={{ height: "632px", width: "655px" }}
-              alt="user"
-            />
+            <div className="overlay-div"></div>
+            <img src={user} style={{ height: "632px" }} alt="user" />
             <button className="btn">Find a Worker</button>
           </div>
         </div>
 
         <div className="col-6">
           <div className="home2">
-            <div class="overlay-div"></div>
+            <div className="overlay-div"></div>
             <img
               src={worker}
               style={{
                 height: "632px",
-                width: "625px",
               }}
               alt="worker"
             />
