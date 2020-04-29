@@ -1,0 +1,61 @@
+.home {
+  width: 50%;
+}
+
+/* Style the button and place it in the middle of the container/image */
+.home .btn {
+  position: absolute;
+  top: 47%;
+  left: 43%;
+  background-color: #00695c;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.home .btn:hover {
+  background-color: black;
+}
+
+.home2 {
+  width: 50%;
+}
+
+/* Style the button and place it in the middle of the container/image */
+.home2 .btn {
+  position: absolute;
+  top: 47%;
+  left: 43%;
+  background-color: #00695c;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.home2 .btn:hover {
+  background-color: black;
+}
+
+.text {
+  text-align: center;
+}
+
+.under-and-over {
+  text-decoration-line: underline overline;
+  text-decoration-style: wavy;
+  text-decoration-color: #2bbbad;
+}
+
+.overlay-div {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 188, 212, 0.1);
+  opacity: 0.7;
+}
