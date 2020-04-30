@@ -1,9 +1,0 @@
-.main {
-  background: rgb(163, 169, 209);
-  background: linear-gradient(
-    0deg,
-    rgba(163, 169, 209, 1) 0%,
-    rgba(36, 199, 196, 1) 42%,
-    rgba(37, 117, 189, 1) 100%
-  );
-}

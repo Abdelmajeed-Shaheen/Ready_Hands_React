@@ -1,12 +1,12 @@
 import React from "react";
-// import FormPage from "./Components/SignupForm";
-import HorizontalLinearStepper from "./Components/CreateJob/CreatePost";
+import Register from "./Components/Signup/Register";
+// import HorizontalLinearStepper from "./Components/CreateJob/CreatePost";
 
 function App() {
   return (
     <div className="App">
-      <HorizontalLinearStepper />
-      {/* <FormPage /> */}
+      {/* <HorizontalLinearStepper /> */}
+      <Register />
     </div>
   );
 }
