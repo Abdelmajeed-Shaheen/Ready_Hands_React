@@ -1,6 +1,6 @@
 import React from "react";
 // import FormPage from "./Components/SignupForm";
-import HorizontalLinearStepper from "./Components/CreatePost";
+import HorizontalLinearStepper from "./Components/CreateJob/CreatePost";
 
 function App() {
   return (
