@@ -6,6 +6,17 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
+/*google map*/
+import MapContainer from "./MapContainer";
+/*Date and time Picker */
+import DateAndTimePicker from "./DateTimePicker";
+/*fill job information*/
+import JobCreationDetail from "./JobCreationDetail";
+/*contact info*/
+import ContactInfo from "./ContactInfo";
+/*Review*/
+import Review from "./Review";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -30,17 +41,18 @@ function getSteps() {
 }
 
 function getStepContent(step) {
+  // let component=null;
   switch (step) {
     case 0:
-      return "Where's the job location?";
+      return <MapContainer />;
     case 1:
-      return "Select the starting/ending date/time";
+      return <DateAndTimePicker />;
     case 2:
-      return "Fill these information please";
+      return <JobCreationDetail />;
     case 3:
-      return "Add your contact information";
+      return <ContactInfo />;
     case 4:
-      return "That's all what you need!";
+      return <Review />;
     default:
       return "Unknown step";
   }
@@ -75,21 +87,6 @@ export default function HorizontalLinearStepper() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  //   const handleSkip = () => {
-  //     if (!isStepOptional(activeStep)) {
-  //       // You probably want to guard against something like this,
-  //       // it should never occur unless someone's actively trying to break something.
-  //       throw new Error("You can't skip a step that isn't optional.");
-  //     }
-
-  //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  //     setSkipped((prevSkipped) => {
-  //       const newSkipped = new Set(prevSkipped.values());
-  //       newSkipped.add(activeStep);
-  //       return newSkipped;
-  //     });
-  //   };
-
   const handleReset = () => {
     setActiveStep(0);
   };
@@ -110,10 +107,17 @@ export default function HorizontalLinearStepper() {
       <div>
         {activeStep === steps.length ? (
           <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
+            <Typography
+              style={{ marginLeft: 550 }}
+              className={classes.instructions}
+            >
+              All steps completed - Your post's ready!
             </Typography>
-            <Button onClick={handleReset} className={classes.button}>
+            <Button
+              style={{ position: "absolute", bottom: 0, right: 0 }}
+              onClick={handleReset}
+              className={classes.button}
+            >
               Reset
             </Button>
           </div>
@@ -124,6 +128,7 @@ export default function HorizontalLinearStepper() {
             </Typography>
             <div>
               <Button
+                style={{ position: "absolute", bottom: 0, left: 0 }}
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 className={classes.button}
@@ -132,6 +137,7 @@ export default function HorizontalLinearStepper() {
               </Button>
 
               <Button
+                style={{ position: "absolute", bottom: 0, right: 0 }}
                 variant="contained"
                 color="primary"
                 onClick={handleNext}
