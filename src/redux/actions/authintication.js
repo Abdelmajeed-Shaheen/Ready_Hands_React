@@ -28,15 +28,15 @@ export const checkForExpiredToken = () => {
 export const login = (userData, history) => {
   return async dispatch => {
     try {
-      const res = await instance.post("/api/login", userData);
+      const res = await instance.post("login", userData);
+      console.log(res);
       const user = res.data;
       dispatch(setCurrentUser(user.access));
       history.replace("/home");
     } catch (err) {
-      console.log(err);
       dispatch({
         type: SET_ERRORS,
-        payload: err,
+        payload: err.response.data,
       });
     }
   };

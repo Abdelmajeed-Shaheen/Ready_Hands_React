@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import worker from "../../assets/images/worker.png";
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -45,7 +47,7 @@ function getStepContent(step) {
   }
 }
 
-export default function Register() {
+const Register = ({ user }) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
@@ -77,7 +79,6 @@ export default function Register() {
   const handleReset = () => {
     setActiveStep(0);
   };
-
   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep}>
@@ -138,4 +139,12 @@ export default function Register() {
       </div>
     </div>
   );
-}
+};
+
+const mapStateToProps = state => {
+  return {
+    user: state.userState.user,
+  };
+};
+
+export default connect(mapStateToProps)(Register);
