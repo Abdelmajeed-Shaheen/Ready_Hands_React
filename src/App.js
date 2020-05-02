@@ -5,7 +5,7 @@ import Home from "./Components/Home/Home";
 import JobList from "./Components/Worker/JobList";
 import Login from "./Components/Signup&Login/Login";
 import HorizontalLinearStepper from "./Components/CreateJob/CreatePost";
-import Register from "./Components/Signup&Login/Register";
+import UserForm from "./Components/Signup&Login/Register/UserForm";
 function App() {
   return (
     <div className="App">
@@ -15,7 +15,7 @@ function App() {
         <Route path="/jobs" component={JobList} />
         <Route path="/login" component={Login} />
         <Route path="/create/job" component={HorizontalLinearStepper} />
-        <Route path="/register" component={Register} />
+        <Route path="/register" component={UserForm} />
         <Redirect to="/home" />
       </Switch>
     </div>
