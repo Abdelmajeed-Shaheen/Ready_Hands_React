@@ -66,6 +66,9 @@ export class Confirm extends Component {
                 </ListItem>
               )}
             </List>
+            <p style={{ color: "red" }}>
+              {this.props.errors ? this.props.errors.username : ""}
+            </p>
             <br />
 
             <button
@@ -97,10 +100,17 @@ export class Confirm extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    errors: state.errorsState,
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     signup: (userData, history, clientorworker, type) =>
       dispatch(actions.signup(userData, history, clientorworker, type)),
   };
 };
-export default connect(null, mapDispatchToProps)(Confirm);
+export default connect(mapStateToProps, mapDispatchToProps)(Confirm);

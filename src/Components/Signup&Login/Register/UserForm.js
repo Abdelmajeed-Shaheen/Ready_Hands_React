@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import FormUserDetails from "./FormUserDetails";
 import ClientOrWorker from "./ClientOrWorker";
 import Confirm from "./Confirm";
@@ -46,6 +48,8 @@ export class UserForm extends Component {
   };
 
   render() {
+    if (this.props.user && this.props.user.user.type !== "none")
+      return <Redirect to="/home" />;
     const { step } = this.state;
     const {
       first_name,
@@ -131,5 +135,9 @@ export class UserForm extends Component {
     }
   }
 }
-
-export default UserForm;
+const mapStateToProps = state => {
+  return {
+    user: state.userState.user,
+  };
+};
+export default connect(mapStateToProps)(UserForm);
