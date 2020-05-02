@@ -9,17 +9,59 @@ const mapStyles = {
 };
 
 export class MapContainer extends Component {
+  continue = (e) => {
+    e.preventDefault();
+    this.props.nextStep();
+  };
+
+  back = (e) => {
+    e.preventDefault();
+    this.props.prevStep();
+  };
   render() {
     return (
-      <Map
-        google={this.props.google}
-        zoom={14}
-        style={mapStyles}
-        initialCenter={{
-          lat: 31.9506347,
-          lng: 35.9208867,
-        }}
-      />
+      <div className="regback">
+        <div className=" bg-transparent  align-ceneter">
+          <div className="row mx-auto ">
+            <Map
+              google={this.props.google}
+              zoom={14}
+              style={mapStyles}
+              initialCenter={{
+                lat: 31.9506347,
+                lng: 35.9208867,
+              }}
+            />
+          </div>
+          <div className="row">
+            <button
+              className="btn btn-primary mt-5"
+              onClick={this.continue}
+              style={{
+                position: "absolute",
+                right: 0,
+                bottom: 0,
+                color: "white",
+                backgroundColor: "#00695c",
+                borderColor: "#00695c",
+              }}
+            >
+              Continue
+            </button>
+            <button
+              className="btn btn-warning mt-5"
+              onClick={this.back}
+              style={{
+                position: "absolute",
+                left: 0,
+                bottom: 0,
+              }}
+            >
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
     );
   }
 }
