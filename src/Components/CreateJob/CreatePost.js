@@ -1,154 +1,145 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-
-/*google map*/
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import MapContainer from "./MapContainer";
-/*Date and time Picker */
-import DateAndTimePicker from "./DateTimePicker";
-/*fill job information*/
-import JobCreationDetail from "./JobCreationDetail";
-/*contact info*/
-import ContactInfo from "./ContactInfo";
-/*Review*/
+import DateTimePicker from "./DateTimePicker";
 import Review from "./Review";
+import JobCreationDetail from "./JobCreationDetail";
+import ContactInfo from "./ContactInfo";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-  },
-  button: {
-    marginRight: theme.spacing(1),
-  },
-  instructions: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-}));
+export class CreatePost extends Component {
+  state = {
+    step: 1,
+    dateFrom: "",
+    dateTo: "",
+    timeFrom: "",
+    timeTo: "",
+    email: "",
+    workingType: "",
+    workerRange: "",
+    workerGender: "",
+    numberOfWorkers: 1,
+    pricePerHour: 1.0,
+    phoneNumber: "",
+    address: "",
+  };
 
-function getSteps() {
-  return [
-    "Select Location",
-    "Select Time",
-    "Job Detail",
-    "Contact Info",
-    "Confirm!",
-  ];
-}
+  // Proceed to next step
+  nextStep = () => {
+    const { step } = this.state;
+    this.setState({
+      step: step + 1,
+    });
+  };
 
-function getStepContent(step) {
-  // let component=null;
-  switch (step) {
-    case 0:
-      return <MapContainer />;
-    case 1:
-      return <DateAndTimePicker />;
-    case 2:
-      return <JobCreationDetail />;
-    case 3:
-      return <ContactInfo />;
-    case 4:
-      return <Review />;
-    default:
-      return "Unknown step";
+  // Go back to prev step
+  prevStep = () => {
+    const { step } = this.state;
+    this.setState({
+      step: step - 1,
+    });
+  };
+
+  settype = (type) => {
+    this.setState({ type: type });
+  };
+
+  // Handle fields change
+  handleChange = (input) => (e) => {
+    this.setState({ [input]: e.target.value });
+  };
+
+  handleSelect = (input) => (e) => {
+    this.setState({ [input]: e.target.value });
+  };
+
+  render() {
+    if (this.props.user && this.props.user.user.type !== "none")
+      return <Redirect to="/home" />;
+    const { step } = this.state;
+    const {
+      dateFrom,
+      dateTo,
+      timeFrom,
+      timeTo,
+      email,
+      workingType,
+      workerRange,
+      workerGender,
+      numberOfWorkers,
+      pricePerHour,
+      phoneNumber,
+      address,
+    } = this.state;
+    const values = {
+      dateFrom,
+      dateTo,
+      timeFrom,
+      timeTo,
+      email,
+      workingType,
+      workerRange,
+      workerGender,
+      numberOfWorkers,
+      pricePerHour,
+      phoneNumber,
+      address,
+    };
+
+    switch (step) {
+      case 1:
+        return (
+          <MapContainer
+            nextStep={this.nextStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        );
+      case 2:
+        return (
+          <DateTimePicker
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        );
+      case 3:
+        return (
+          <JobCreationDetail
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            values={values}
+            handleSelect={this.handleSelect}
+            handleChange={this.handleChange}
+          />
+        );
+      case 4:
+        return (
+          <ContactInfo
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleChange={this.handleChange}
+            values={values}
+            history={this.props.history}
+          />
+        );
+      case 5:
+        return <Review prevStep={this.prevStep} />;
+      default:
+        return (
+          <MapContainer
+            nextStep={this.nextStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        );
+    }
   }
 }
-
-export default function HorizontalLinearStepper() {
-  const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set());
-  const steps = getSteps();
-
-  //   const isStepOptional = (step) => {
-  //     return step === 1;
-  //   };
-
-  const isStepSkipped = (step) => {
-    return skipped.has(step);
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
   };
-
-  const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
-  return (
-    <div className={classes.root}>
-      <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
-          const stepProps = {};
-          const labelProps = {};
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      <div>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography
-              style={{ marginLeft: 550 }}
-              className={classes.instructions}
-            >
-              All steps completed - Your post's ready!
-            </Typography>
-            <Button
-              style={{ position: "absolute", bottom: 0, right: 0 }}
-              onClick={handleReset}
-              className={classes.button}
-            >
-              Reset
-            </Button>
-          </div>
-        ) : (
-          <div>
-            <Typography className={classes.instructions}>
-              {getStepContent(activeStep)}
-            </Typography>
-            <div>
-              <Button
-                style={{ position: "absolute", bottom: 0, left: 0 }}
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.button}
-              >
-                Back
-              </Button>
-
-              <Button
-                style={{ position: "absolute", bottom: 0, right: 0 }}
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
+};
+export default connect(mapStateToProps)(CreatePost);

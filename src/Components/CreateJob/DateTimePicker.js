@@ -1,54 +1,108 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
+import React, { Component } from "react";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: "flex",
-    flexWrap: "wrap",
-    marginLeft: 450,
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-    fontSize: 20,
-  },
-}));
+export default class DateAndTimePicker extends Component {
+  continue = (e) => {
+    e.preventDefault();
+    this.props.nextStep();
+  };
 
-export default function DateAndTimePicker() {
-  const classes = useStyles();
+  back = (e) => {
+    e.preventDefault();
+    this.props.prevStep();
+  };
 
-  return (
-    <div>
-      <h3 style={{ marginLeft: 450 }}>
-        Please choose the time duration you need workers
-      </h3>
-      <div>
-        <form className={classes.container} noValidate>
-          <TextField
-            id="datetime-local"
-            label="From: "
-            type="datetime-local"
-            defaultValue="2017-05-24T10:30"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
+  render() {
+    const { values, handleChange } = this.props;
+    return (
+      <div className="regback">
+        <div className=" bg-transparent  align-ceneter">
+          <div className=" col-6 mx-auto ">
+            <div className="row py-5 ">
+              <div className="col">
+                <h3 className="text-white text-center">
+                  Please choose the time duration you need workers
+                </h3>
+              </div>
+            </div>
 
-          <TextField
-            id="datetime-local"
-            label="To: "
-            type="datetime-local"
-            defaultValue="2017-05-24T10:30"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </form>
+            <div className="row py-2">
+              <form>
+                <div class="form-group">
+                  <label>Date from</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    name="date from"
+                    required
+                    value={values.dateFrom}
+                    onChange={handleChange("dateFrom")}
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>Time From</label>
+                  <input
+                    type="time"
+                    class="form-control"
+                    name="time To"
+                    value={values.timeTo}
+                    onChange={handleChange("timeTo")}
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>Date To</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    name="date to"
+                    required
+                    value={values.dateTo}
+                    onChange={handleChange("dateTo")}
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>Time To</label>
+                  <input
+                    type="time"
+                    class="form-control"
+                    name="time From"
+                    value={values.timeFrom}
+                    onChange={handleChange("timeFrom")}
+                    required
+                  />
+                </div>
+              </form>
+            </div>
+            <button
+              className="btn btn-primary mt-5"
+              onClick={this.continue}
+              style={{
+                position: "absolute",
+                right: 0,
+
+                color: "white",
+                backgroundColor: "#00695c",
+                borderColor: "#00695c",
+              }}
+            >
+              Continue
+            </button>
+            <button
+              className="btn btn-warning mt-5"
+              onClick={this.back}
+              style={{
+                position: "absolute",
+                left: 0,
+              }}
+            >
+              Back
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
