@@ -147,7 +147,7 @@ const Navbar = ({ user, logout }) => {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="sticky" style={{ backgroundColor: "#00695c" }}>
+      <AppBar position="sticky" style={{ backgroundColor: "#669999" }}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
             Ready Hands

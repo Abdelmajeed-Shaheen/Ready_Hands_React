@@ -17,14 +17,14 @@ const Home = () => {
               <div className="row mt-5">
                 <div className="col mr-5">
                   <Link to="/register" style={{ textDecoration: "none" }}>
-                    <button className="btn btn btn-block homebtn">
+                    <button className=" btn-block homebutton">
                       Find A Job
                     </button>
                   </Link>
                 </div>
                 <div className="col">
                   <Link to="/create/job" style={{ textDecoration: "none" }}>
-                    <button className="btn btn btn-block homebtn">
+                    <button className=" btn-block homebutton">
                       Find A Worker
                     </button>
                   </Link>
@@ -100,7 +100,7 @@ const Home = () => {
     </>
   );
 };
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.userState.user,
   };
