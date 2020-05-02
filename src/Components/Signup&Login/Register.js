@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import worker from "../../assets/images/worker.png";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -15,7 +15,7 @@ import Typography from "@material-ui/core/Typography";
 /*contact info*/
 // import ContactInfo from "./ContactInfo";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
   },
@@ -57,7 +57,7 @@ const Register = ({ user }) => {
   //     return step === 1;
   //   };
 
-  const isStepSkipped = step => {
+  const isStepSkipped = (step) => {
     return skipped.has(step);
   };
 
@@ -68,12 +68,12 @@ const Register = ({ user }) => {
       newSkipped.delete(activeStep);
     }
 
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
   };
 
   const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
   const handleReset = () => {
@@ -141,7 +141,7 @@ const Register = ({ user }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.userState.user,
   };
