@@ -90,9 +90,9 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <footer class="bg-light py-5">
-        <div class="container">
-          <div class="small text-center text-muted">
+      <footer className="bg-light py-5">
+        <div className="container">
+          <div className="small text-center text-muted">
             Copyright © 2020 - ALPHA
           </div>
         </div>

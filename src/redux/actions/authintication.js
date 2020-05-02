@@ -42,11 +42,18 @@ export const login = (userData, history) => {
   };
 };
 
-export const signup = (userData, history) => {
+export const signup = (userData, history, clientorworker, type) => {
   return async dispatch => {
     try {
+      console.log(userData);
       const res = await instance.post("register", userData);
       const user = res.data;
+      instance.defaults.headers.common.Authorization = `Bearer ${user.tokens.access}`;
+      if (type === "worker") {
+        await instance.post("worker/create/", clientorworker);
+      } else if (type === "client") {
+        await instance.post("client/create/", clientorworker);
+      }
       dispatch(setCurrentUser(user.tokens.access));
       history.replace("/home");
     } catch (err) {
