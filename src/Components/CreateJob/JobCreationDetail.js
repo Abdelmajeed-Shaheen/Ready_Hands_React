@@ -1,13 +1,4 @@
 import React, { Component } from "react";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import TextField from "@material-ui/core/TextField";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
 
 export default class JobCreationDetail extends Component {
   continue = (e) => {
@@ -25,7 +16,7 @@ export default class JobCreationDetail extends Component {
     return (
       <div className="regback">
         <div className=" bg-transparent  align-ceneter">
-          <div className=" col-6 mx-auto ">
+          <div className=" col-9 mx-auto ">
             <div className="row py-5 ">
               <div className="col">
                 <h3 className="text-white text-center">
@@ -34,106 +25,180 @@ export default class JobCreationDetail extends Component {
               </div>
             </div>
             <div className="row py-2">
-              <FormControl required component="fieldset">
-                <FormLabel component="legend">Working Type</FormLabel>
-                <FormGroup>
-                  <FormControlLabel
-                    control={<Checkbox name="Cleaning" />}
-                    label="Cleaning"
-                    value={values.workingType}
-                    onSelect={handleSelect("workingType")}
-                  />
-                  <FormControlLabel
-                    control={<Checkbox name="CoffeeMan" />}
-                    label="Coffee Man"
-                    value={values.workingType}
-                    onSelect={handleSelect("workingType")}
-                  />
-                  <FormControlLabel
-                    style={{ paddingBottom: 10 }}
-                    control={<Checkbox name="Organizer" />}
-                    label="Organizer"
-                    value={values.workingType}
-                    onSelect={handleSelect("workingType")}
-                  />
-                  <TextField
-                    style={{ paddingBottom: 10 }}
-                    required
-                    id="standard-required"
-                    label="Number of Workers: "
-                    value={values.numberOfWorkers}
-                    onChange={handleChange("numberOfWorkers")}
-                  />
-                  <TextField
-                    style={{ paddingBottom: 10 }}
-                    required
-                    id="standard-required"
-                    label="Price Per Hour in JD: "
-                    value={values.pricePerHour}
-                    onChange={handleChange("pricePerHour")}
-                  />
-                </FormGroup>
-              </FormControl>
-              <FormControl style={{ width: 100 }}>
-                <InputLabel id="demo-simple-select-label">
-                  Worker Range
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={values.workerRange}
-                  onSelect={handleSelect("numberOfWorkers")}
+              <div className="dropdown mr-3">
+                <button
+                  className="btn btn-info dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                  <MenuItem value={5}>5</MenuItem>
-                </Select>
-              </FormControl>
-              <FormControl required component="fieldset">
-                <FormLabel component="legend">Worker Gender</FormLabel>
-                <FormGroup>
-                  <FormControlLabel
-                    control={<Checkbox name="Male" />}
-                    label="Male"
+                  Worker Type
+                </button>
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton"
+                  value={values.workingType}
+                >
+                  <label
+                    className="dropdown-item"
+                    value={values.workingType}
+                    onSelect={handleSelect("workingType")}
+                  >
+                    Cleaner
+                  </label>
+                  <label
+                    className="dropdown-item"
+                    value={values.workingType}
+                    onSelect={handleSelect("workingType")}
+                  >
+                    Organizer
+                  </label>
+                  <label
+                    className="dropdown-item"
+                    value={values.workingType}
+                    onSelect={handleSelect("workingType")}
+                  >
+                    Coffee Man
+                  </label>
+                </div>
+              </div>
+              <div className="dropdown mr-3">
+                <button
+                  className="btn btn-info dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Gender
+                </button>
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton"
+                >
+                  <label
+                    className="dropdown-item"
                     value={values.workerGender}
-                    onSelect={handleSelect("numberOfWorkers")}
-                  />
-                  <FormControlLabel
-                    control={<Checkbox name="Female" />}
-                    label="Female"
+                    onSelect={handleSelect("workerGender")}
+                  >
+                    Female
+                  </label>
+                  <label
+                    className="dropdown-item"
                     value={values.workerGender}
-                    onSelect={handleSelect("numberOfWorkers")}
-                  />
-                </FormGroup>
-              </FormControl>
+                    onSelect={handleSelect("workerGender")}
+                  >
+                    Male
+                  </label>
+                </div>
+              </div>
+              <div className="dropdown mr-3">
+                <button
+                  className="btn btn-info dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Worker range
+                </button>
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton"
+                >
+                  <label
+                    className="dropdown-item"
+                    value={values.workerRange}
+                    onSelect={handleSelect("workerRange")}
+                  >
+                    1
+                  </label>
+                  <label
+                    className="dropdown-item"
+                    value={values.workerRange}
+                    onSelect={handleSelect("workerRange")}
+                  >
+                    2
+                  </label>
+                  <label
+                    className="dropdown-item"
+                    value={values.workerRange}
+                    onSelect={handleSelect("workerRange")}
+                  >
+                    3
+                  </label>
+                  <label
+                    className="dropdown-item"
+                    value={values.workerRange}
+                    onSelect={handleSelect("workerRange")}
+                  >
+                    4
+                  </label>
+                  <label
+                    className="dropdown-item"
+                    value={values.workerRange}
+                    onSelect={handleSelect("workerRange")}
+                  >
+                    5
+                  </label>
+                </div>
+              </div>
+              <div className=" col-xs-4 mr-3">
+                <label style={{ color: "white", fontWeight: "bolder" }}>
+                  Number of workers
+                </label>
+                <input
+                  required
+                  type="text"
+                  className="form-control"
+                  value={values.numberOfWorkers}
+                  onChange={handleChange("numberOfWorkers")}
+                  style={{ width: 150 }}
+                />
+              </div>
+              <div>
+                <label style={{ color: "white", fontWeight: "bolder" }}>
+                  Price per hour
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={values.pricePerHour}
+                  onChange={handleChange("pricePerHour")}
+                  required
+                  style={{ width: 150 }}
+                />
+              </div>
             </div>
-            <button
-              className="btn btn-primary mt-5"
-              onClick={this.continue}
-              style={{
-                position: "absolute",
-                right: 0,
-
-                color: "white",
-                backgroundColor: "#00695c",
-                borderColor: "#00695c",
-              }}
-            >
-              Continue
-            </button>
-            <button
-              className="btn btn-warning mt-5"
-              onClick={this.back}
-              style={{
-                position: "absolute",
-                left: 0,
-              }}
-            >
-              Back
-            </button>
           </div>
+          <button
+            className="btn btn-primary mt-5"
+            onClick={this.continue}
+            style={{
+              position: "absolute",
+              right: 0,
+
+              color: "white",
+              backgroundColor: "#00695c",
+              borderColor: "#00695c",
+            }}
+          >
+            Continue
+          </button>
+          <button
+            className="btn btn-warning mt-5"
+            onClick={this.back}
+            style={{
+              position: "absolute",
+              left: 0,
+            }}
+          >
+            Back
+          </button>
         </div>
       </div>
     );

@@ -48,17 +48,6 @@ export class MapContainer extends Component {
             >
               Continue
             </button>
-            <button
-              className="btn btn-warning mt-5"
-              onClick={this.back}
-              style={{
-                position: "absolute",
-                left: 0,
-                bottom: 0,
-              }}
-            >
-              Back
-            </button>
           </div>
         </div>
       </div>

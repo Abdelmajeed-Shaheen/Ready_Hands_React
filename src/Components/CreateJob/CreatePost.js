@@ -125,7 +125,7 @@ export class CreatePost extends Component {
           />
         );
       case 5:
-        return <Review prevStep={this.prevStep} />;
+        return <Review prevStep={this.prevStep} values={values} />;
       default:
         return (
           <MapContainer
