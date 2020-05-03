@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// Why not just use NavLinks
 const Sidebar = ({ location }) => {
   return (
     <div className="sidebar" data-color="purple" data-background-color="white">

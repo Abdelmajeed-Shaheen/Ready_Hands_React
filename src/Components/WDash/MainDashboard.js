@@ -4,6 +4,7 @@ import MainPanel from "./MainPanel";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
+// where is the location prop coming from?
 const MainDashboard = ({ location, user }) => {
   if (!user) return <Redirect to="/home" />;
   return (
@@ -14,7 +15,7 @@ const MainDashboard = ({ location, user }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.userState.user,
   };

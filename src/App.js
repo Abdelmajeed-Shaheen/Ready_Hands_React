@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Navbar from "./Components/Home/Navbar";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Signup&Login/Login";
-import HorizontalLinearStepper from "./Components/CreateJob/CreatePost";
+import HorizontalLinearStepper from "./Components/CreateJob/CreatePost"; // why not imported as CreatePost?
 import UserForm from "./Components/Signup&Login/Register/UserForm";
 import MainDashboard from "./Components/WDash/MainDashboard";
 

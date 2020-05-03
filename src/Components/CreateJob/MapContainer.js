@@ -9,6 +9,8 @@ const mapStyles = {
 };
 
 export class MapContainer extends Component {
+  // e.preventDefault() is only for the submission of a form (onSubmit())
+  // not for the clicking of a button (onClick())
   continue = (e) => {
     e.preventDefault();
     this.props.nextStep();

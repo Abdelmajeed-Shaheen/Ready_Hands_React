@@ -5,6 +5,7 @@ import Profile from "./Profile";
 import JobList from "./JobList";
 import Map from "./Map";
 
+// you should probably use routes
 const MainPanel = ({ location }) => {
   return (
     <div className="main-panel">
