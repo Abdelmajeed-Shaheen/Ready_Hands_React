@@ -6,6 +6,7 @@ import Login from "./Components/Signup&Login/Login";
 import HorizontalLinearStepper from "./Components/CreateJob/CreatePost";
 import UserForm from "./Components/Signup&Login/Register/UserForm";
 import MainDashboard from "./Components/WDash/MainDashboard";
+import MainDashboardC from "./Components/CDash/MainDashboardC";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/create/job" component={HorizontalLinearStepper} />
         <Route path="/register" component={UserForm} />
-        <Route path="/dashboard" component={MainDashboard} />
+        <Route path="/worker/dashboard" component={MainDashboard} />
+        <Route path="/client/dashboard" component={MainDashboardC} />
         <Redirect to="/home" />
       </Switch>
     </div>

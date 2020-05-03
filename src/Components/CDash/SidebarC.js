@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Sidebar = ({ location }) => {
+const SidebarC = ({ location }) => {
   return (
     <div className="sidebar" data-color="purple" data-background-color="white">
       <div className="logo">
@@ -11,20 +11,20 @@ const Sidebar = ({ location }) => {
         <ul className="nav">
           <li
             className={`nav-item ${
-              location.pathname === "/worker/dashboard" && "active"
+              location.pathname === "/client/dashboard" && "active"
             }`}
           >
-            <Link className="nav-link" to="/worker/dashboard">
+            <Link className="nav-link" to="/client/dashboard">
               <i className="material-icons">dashboard</i>
               <p>Dashboard</p>
             </Link>
           </li>
           <li
             className={`nav-item ${
-              location.pathname === "/worker/dashboard/profile" && "active"
+              location.pathname === "/client/dashboard/profile" && "active"
             }`}
           >
-            <Link className="nav-link" to="/worker/dashboard/profile">
+            <Link className="nav-link" to="/client/dashboard/profile">
               <i className="material-icons">person</i>
               <p>Profile</p>
             </Link>
@@ -32,10 +32,10 @@ const Sidebar = ({ location }) => {
 
           <li
             className={`nav-item ${
-              location.pathname === "/worker/dashboard/jobs/list" && "active"
+              location.pathname === "/client/dashboard/jobs/list" && "active"
             }`}
           >
-            <Link className="nav-link" to="/worker/dashboard/jobs/list">
+            <Link className="nav-link" to="/client/dashboard/jobs/list">
               <i className="material-icons">content_paste</i>
               <p>Jobs List</p>
             </Link>
@@ -43,12 +43,12 @@ const Sidebar = ({ location }) => {
 
           <li
             className={`nav-item ${
-              location.pathname === "/worker/dashboard/jobs/map" && "active"
+              location.pathname === "/client/dashboard/table" && "active"
             }`}
           >
-            <Link className="nav-link" to="/worker/dashboard/jobs/map">
-              <i className="material-icons">location_ons</i>
-              <p>Jobs Map</p>
+            <Link className="nav-link" to="/client/dashboard/table">
+              <i className="material-icons">table_chart</i>
+              <p>Table</p>
             </Link>
           </li>
         </ul>
@@ -57,4 +57,4 @@ const Sidebar = ({ location }) => {
   );
 };
 
-export default Sidebar;
+export default SidebarC;

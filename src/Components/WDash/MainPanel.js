@@ -8,10 +8,10 @@ import Map from "./Map";
 const MainPanel = ({ location }) => {
   return (
     <div className="main-panel">
-      {location.pathname === "/dashboard/jobs/list" && <JobList />}
-      {location.pathname === "/dashboard" && <Dashboard />}
-      {location.pathname === "/dashboard/profile" && <Profile />}
-      {location.pathname === "/dashboard/jobs/map" && <Map />}
+      {location.pathname === "/worker/dashboard/jobs/list" && <JobList />}
+      {location.pathname === "/worker/dashboard" && <Dashboard />}
+      {location.pathname === "/worker/dashboard/profile" && <Profile />}
+      {location.pathname === "/worker/dashboard/jobs/map" && <Map />}
       <Footer />
     </div>
   );

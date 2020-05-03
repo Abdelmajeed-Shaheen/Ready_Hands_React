@@ -4,7 +4,7 @@ import { instance } from "./instance";
 import { SET_CURRENT_USER, SET_ERRORS, GETPROFILE } from "./actionTypes";
 
 export const checkForExpiredToken = () => {
-  return dispatch => {
+  return (dispatch) => {
     // Check for token expiration
     const token = localStorage.getItem("token");
 
@@ -26,7 +26,7 @@ export const checkForExpiredToken = () => {
 };
 
 export const login = (userData, history) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       const res = await instance.post("login", userData);
       console.log(res);
@@ -43,7 +43,7 @@ export const login = (userData, history) => {
 };
 
 export const signup = (userData, history, clientorworker, type) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       console.log(userData);
       const res = await instance.post("register", userData);
@@ -65,8 +65,8 @@ export const signup = (userData, history, clientorworker, type) => {
   };
 };
 
-const setCurrentUser = token => {
-  return async dispatch => {
+const setCurrentUser = (token) => {
+  return async (dispatch) => {
     let user = null;
     if (token) {
       localStorage.setItem("token", token);
@@ -93,7 +93,7 @@ export const logout = () => {
 };
 
 export const getProfile = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       const res = await instance.get("user/profile");
       const user = res.data;

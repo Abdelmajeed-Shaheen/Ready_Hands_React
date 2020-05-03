@@ -1,6 +1,6 @@
 import React from "react";
 
-const Dashboard = () => {
+const DashboardC = () => {
   return (
     <div className="content">
       <div className="container-fluid">
@@ -20,7 +20,7 @@ const Dashboard = () => {
               <div className="card-footer">
                 <div className="stats">
                   <i className="material-icons text-danger">warning</i>
-                  <a href="javascript:;">Get More Space...</a>
+                  Get More Space...
                 </div>
               </div>
             </div>
@@ -79,14 +79,9 @@ const Dashboard = () => {
         <div className="row">
           <div className="col-lg-6 col-md-12">
             <div className="card">
-              <div
-                className="card-header "
-                style={{ backgroundColor: "#669999" }}
-              >
-                <h4 className="card-title" style={{ color: "white" }}>
-                  Employees Stats
-                </h4>
-                <p className="card-category" style={{ color: "white" }}>
+              <div className="card-header card-header-warning">
+                <h4 className="card-title">Employees Stats</h4>
+                <p className="card-category">
                   New employees on 15th September, 2016
                 </p>
               </div>
@@ -118,14 +113,9 @@ const Dashboard = () => {
           </div>
           <div className="col-lg-6 col-md-12">
             <div className="card">
-              <div
-                className="card-header"
-                style={{ backgroundColor: "#669999" }}
-              >
-                <h4 className="card-title" style={{ color: "white" }}>
-                  Employees Stats
-                </h4>
-                <p className="card-category" style={{ color: "white" }}>
+              <div className="card-header card-header-warning">
+                <h4 className="card-title">Employees Stats</h4>
+                <p className="card-category">
                   New employees on 15th September, 2016
                 </p>
               </div>
@@ -161,4 +151,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardC;

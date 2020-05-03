@@ -15,7 +15,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
@@ -51,7 +51,7 @@ const Navbar = ({ user, logout }) => {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = event => {
+  const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -68,7 +68,7 @@ const Navbar = ({ user, logout }) => {
     logout();
     handleMobileMenuClose();
   };
-  const handleMobileMenuOpen = event => {
+  const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
@@ -151,7 +151,7 @@ const Navbar = ({ user, logout }) => {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="sticky" style={{ backgroundColor: "#00695c" }}>
+      <AppBar position="sticky" style={{ backgroundColor: "#669999" }}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
             Ready Hands
@@ -203,11 +203,11 @@ const Navbar = ({ user, logout }) => {
     </div>
   );
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.userState.user,
 });
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(actions.logout()),
   };

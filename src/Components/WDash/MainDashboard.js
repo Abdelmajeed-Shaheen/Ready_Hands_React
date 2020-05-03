@@ -1,11 +1,10 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import MainPanel from "./MainPanel";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 const MainDashboard = ({ location, user }) => {
-  if (!user) return <Redirect to="/home" />;
+  // if (!user) return <Redirect to="/home" />;
   return (
     <div className="wrapper">
       <Sidebar location={location} />
@@ -14,7 +13,7 @@ const MainDashboard = ({ location, user }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.userState.user,
   };
