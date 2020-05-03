@@ -83,7 +83,11 @@ const Navbar = ({ user, logout }) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link className="nav-link" to="/dashboard" style={{ color: "black" }}>
+          Dashboard
+        </Link>
+      </MenuItem>
       <MenuItem onClick={handleMenuCloseLogOut}>logout</MenuItem>
     </Menu>
   );

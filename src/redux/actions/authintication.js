@@ -32,7 +32,7 @@ export const login = (userData, history) => {
       console.log(res);
       const user = res.data;
       dispatch(setCurrentUser(user.access));
-      history.replace("/home");
+      history.replace("/dashboard");
     } catch (err) {
       dispatch({
         type: SET_ERRORS,
@@ -55,7 +55,7 @@ export const signup = (userData, history, clientorworker, type) => {
         await instance.post("client/create/", clientorworker);
       }
       dispatch(setCurrentUser(user.tokens.access));
-      history.replace("/home");
+      history.replace("/dashboard");
     } catch (err) {
       dispatch({
         type: SET_ERRORS,

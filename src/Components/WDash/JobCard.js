@@ -17,7 +17,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import test from "../../assets/images/test1.png";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
   },

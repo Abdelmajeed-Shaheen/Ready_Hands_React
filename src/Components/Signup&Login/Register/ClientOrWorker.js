@@ -34,7 +34,7 @@ export class ClientOrWorker extends Component {
             <div className="row py-3">
               <div className="col">
                 <button
-                  className="btn btn btn-block homebtn"
+                  className=" btn btn-block homebtn"
                   onClick={() => settype("worker")}
                 >
                   I am A Worker
@@ -42,7 +42,7 @@ export class ClientOrWorker extends Component {
               </div>
               <div className="col">
                 <button
-                  className="btn btn btn-block homebtn"
+                  className=" btn btn-block homebtn"
                   onClick={() => settype("client")}
                 >
                   I am A Client
