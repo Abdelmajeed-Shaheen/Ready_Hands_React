@@ -40,6 +40,8 @@ export class CreatePost extends Component {
     });
   };
 
+  // not being used anywhere
+  // setType
   settype = (type) => {
     this.setState({ type: type });
   };
@@ -49,14 +51,19 @@ export class CreatePost extends Component {
     this.setState({ [input]: e.target.value });
   };
 
+  // redundant method
   handleSelect = (input) => (e) => {
     this.setState({ [input]: e.target.value });
   };
 
   render() {
+    // maybe rearrange reducers to avoid ".user.user"
     if (this.props.user && this.props.user.user.type !== "none")
       return <Redirect to="/home" />;
     const { step } = this.state;
+
+    // is there a simpler way to do this?
+    // maybe all those values should be in a redux reducer?
     const {
       dateFrom,
       dateTo,

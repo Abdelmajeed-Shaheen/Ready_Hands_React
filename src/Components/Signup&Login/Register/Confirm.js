@@ -4,7 +4,7 @@ import * as actions from "../../../redux/actions";
 import { List, ListItem, ListItemText } from "@material-ui/core/";
 
 export class Confirm extends Component {
-  confirm = values => {
+  confirm = (values) => {
     const userData = {
       username: values.username,
       password: values.password,
@@ -26,7 +26,7 @@ export class Confirm extends Component {
     this.props.signup(userData, this.props.history, clientorworker, type);
   };
 
-  back = e => {
+  back = (e) => {
     e.preventDefault();
     this.props.prevStep();
   };
@@ -34,7 +34,7 @@ export class Confirm extends Component {
   render() {
     const {
       values: { first_name, last_name, username, type, phone_no, hour_rate },
-    } = this.props;
+    } = this.props; // wow clever
     return (
       <div className="regback">
         <div className=" bg-transparent  align-ceneter">
@@ -101,13 +101,13 @@ export class Confirm extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     errors: state.errorsState,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     signup: (userData, history, clientorworker, type) =>
       dispatch(actions.signup(userData, history, clientorworker, type)),

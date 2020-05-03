@@ -40,7 +40,7 @@ const Profile = () => {
                   <div className="row">
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label className="bmd-label-floating">Fist Name</label>
+                        <label className="bmd-label-floating">First Name</label>
                         <input type="text" className="form-control" />
                       </div>
                     </div>
@@ -54,7 +54,7 @@ const Profile = () => {
                   <div className="row">
                     <div className="col-md-12">
                       <div className="form-group">
-                        <label className="bmd-label-floating">Adress</label>
+                        <label className="bmd-label-floating">Adderess</label>
                         <input type="text" className="form-control" />
                       </div>
                     </div>

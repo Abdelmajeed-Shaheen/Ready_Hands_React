@@ -38,12 +38,12 @@ export class UserForm extends Component {
     });
   };
 
-  settype = type => {
+  settype = (type) => {
     this.setState({ type: type });
   };
 
   // Handle fields change
-  handleChange = input => e => {
+  handleChange = (input) => (e) => {
     this.setState({ [input]: e.target.value });
   };
 
@@ -112,7 +112,7 @@ export class UserForm extends Component {
             />
           );
         }
-        return alert("please select client or worker");
+        return alert("please select client or worker"); // alert doesn't return anything.
       case 4:
         return (
           <Confirm
@@ -135,7 +135,7 @@ export class UserForm extends Component {
     }
   }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.userState.user,
   };
