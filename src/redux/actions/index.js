@@ -1,7 +1,2 @@
-export {
-  login,
-  logout,
-  signup,
-  checkForExpiredToken,
-  getProfile,
-} from "./authintication";
+export { login, logout, signup, checkForExpiredToken } from "./authintication";
+export { getAllJobs } from "./jobs";

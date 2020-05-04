@@ -1,10 +1,10 @@
 import jwt_decode from "jwt-decode";
 
 import { instance } from "./instance";
-import { SET_CURRENT_USER, SET_ERRORS, GETPROFILE } from "./actionTypes";
+import { SET_CURRENT_USER, SET_ERRORS } from "./actionTypes";
 
 export const checkForExpiredToken = () => {
-  return (dispatch) => {
+  return dispatch => {
     // Check for token expiration
     const token = localStorage.getItem("token");
 
@@ -26,13 +26,12 @@ export const checkForExpiredToken = () => {
 };
 
 export const login = (userData, history) => {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const res = await instance.post("login", userData);
       console.log(res);
       const user = res.data;
-      dispatch(setCurrentUser(user.access));
-      history.replace("/dashboard");
+      dispatch(setCurrentUser(user.access, history));
     } catch (err) {
       dispatch({
         type: SET_ERRORS,
@@ -43,7 +42,7 @@ export const login = (userData, history) => {
 };
 
 export const signup = (userData, history, clientorworker, type) => {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       console.log(userData);
       const res = await instance.post("register", userData);
@@ -65,8 +64,8 @@ export const signup = (userData, history, clientorworker, type) => {
   };
 };
 
-const setCurrentUser = (token) => {
-  return async (dispatch) => {
+const setCurrentUser = (token, history) => {
+  return async dispatch => {
     let user = null;
     if (token) {
       localStorage.setItem("token", token);
@@ -81,6 +80,13 @@ const setCurrentUser = (token) => {
       type: SET_CURRENT_USER,
       payload: user,
     });
+    if (history) {
+      if (user.user.type === "is_worker") {
+        history.replace("/worker/dashboard");
+      } else {
+        history.replace("/client/dashboard");
+      }
+    }
     dispatch({
       type: SET_ERRORS,
       payload: null,
@@ -90,22 +96,4 @@ const setCurrentUser = (token) => {
 
 export const logout = () => {
   return setCurrentUser();
-};
-
-export const getProfile = () => {
-  return async (dispatch) => {
-    try {
-      const res = await instance.get("user/profile");
-      const user = res.data;
-      dispatch({
-        type: GETPROFILE,
-        payload: user,
-      });
-    } catch (err) {
-      dispatch({
-        type: SET_ERRORS,
-        payload: err.response.data,
-      });
-    }
-  };
 };

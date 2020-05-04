@@ -10,19 +10,11 @@ const CustomSkinMap = withScriptjs(
   withGoogleMap(() => (
     <GoogleMap
       defaultZoom={13}
-      defaultCenter={{ lat: 40.748817, lng: -73.985428 }}
+      defaultCenter={{ lat: 31.8354533, lng: 35.6674396 }}
       defaultOptions={{
-        scrollwheel: false,
+        scrollwheel: true,
         zoomControl: true,
         styles: [
-          {
-            featureType: "water",
-            stylers: [
-              { saturation: 43 },
-              { lightness: -11 },
-              { hue: "#0088ff" },
-            ],
-          },
           {
             featureType: "road",
             elementType: "geometry.fill",
@@ -37,16 +29,7 @@ const CustomSkinMap = withScriptjs(
             elementType: "geometry.stroke",
             stylers: [{ color: "#808080" }, { lightness: 54 }],
           },
-          {
-            featureType: "landscape.man_made",
-            elementType: "geometry.fill",
-            stylers: [{ color: "#ece2d9" }],
-          },
-          {
-            featureType: "poi.park",
-            elementType: "geometry.fill",
-            stylers: [{ color: "#ccdca1" }],
-          },
+
           {
             featureType: "road",
             elementType: "labels.text.fill",
@@ -58,11 +41,6 @@ const CustomSkinMap = withScriptjs(
             stylers: [{ color: "#ffffff" }],
           },
           { featureType: "poi", stylers: [{ visibility: "off" }] },
-          {
-            featureType: "landscape.natural",
-            elementType: "geometry.fill",
-            stylers: [{ visibility: "on" }, { color: "#b8cb93" }],
-          },
           { featureType: "poi.park", stylers: [{ visibility: "on" }] },
           {
             featureType: "poi.sports_complex",
@@ -82,9 +60,13 @@ const CustomSkinMap = withScriptjs(
 );
 
 export default function Maps() {
+  const postition = navigator.geolocation.getCurrentPosition(
+    console.log,
+    console.log
+  );
   return (
     <CustomSkinMap
-      googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyARBZ9Hn4Wn4tt2uaEEnA9q6x9EYjB-ekg"
+      googleMapURL="https://maps.google.com/maps/api/js?libraries=geometry&key=AIzaSyCKB7OSirN7IC8iSVD7nR1-mkj7YFpQm6E"
       loadingElement={<div style={{ height: `100%` }} />}
       containerElement={<div style={{ height: `100vh` }} />}
       mapElement={<div style={{ height: `100%` }} />}

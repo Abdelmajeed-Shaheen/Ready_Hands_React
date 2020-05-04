@@ -19,62 +19,57 @@ export default class DateAndTimePicker extends Component {
           <div className=" col-6 mx-auto ">
             <div className="row py-5 ">
               <div className="col">
-                <h3 className="text-white text-center">
-                  Please choose the time duration you need workers
-                </h3>
+                <h3 className="text-white text-center">Date and Time</h3>
               </div>
             </div>
-
             <div className="row py-2">
-              <form>
-                <div class="form-group">
-                  <label>Date from</label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    name="date from"
-                    required
-                    value={values.dateFrom}
-                    onChange={handleChange("dateFrom")}
-                  />
-                </div>
+              <div className="col">
+                <label style={{ color: "#e0e2e4" }}>Date from</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  name="date from"
+                  required
+                  value={values.dateFrom}
+                  onChange={handleChange("dateFrom")}
+                />
+              </div>
+              <div className="col">
+                <label style={{ color: "#e0e2e4" }}>Date To</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  name="date to"
+                  required
+                  value={values.dateTo}
+                  onChange={handleChange("dateTo")}
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <label style={{ color: "#e0e2e4" }}>Time From</label>
+                <input
+                  type="time"
+                  class="form-control"
+                  name="time To"
+                  value={values.timeTo}
+                  onChange={handleChange("timeTo")}
+                  required
+                />
+              </div>
 
-                <div class="form-group">
-                  <label>Time From</label>
-                  <input
-                    type="time"
-                    class="form-control"
-                    name="time To"
-                    value={values.timeTo}
-                    onChange={handleChange("timeTo")}
-                    required
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label>Date To</label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    name="date to"
-                    required
-                    value={values.dateTo}
-                    onChange={handleChange("dateTo")}
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label>Time To</label>
-                  <input
-                    type="time"
-                    class="form-control"
-                    name="time From"
-                    value={values.timeFrom}
-                    onChange={handleChange("timeFrom")}
-                    required
-                  />
-                </div>
-              </form>
+              <div className="col">
+                <label style={{ color: "#e0e2e4" }}>Time To</label>
+                <input
+                  type="time"
+                  class="form-control"
+                  name="time From"
+                  value={values.timeFrom}
+                  onChange={handleChange("timeFrom")}
+                  required
+                />
+              </div>
             </div>
             <button
               className="btn btn-primary mt-5"
@@ -82,7 +77,6 @@ export default class DateAndTimePicker extends Component {
               style={{
                 position: "absolute",
                 right: 0,
-
                 color: "white",
                 backgroundColor: "#00695c",
                 borderColor: "#00695c",

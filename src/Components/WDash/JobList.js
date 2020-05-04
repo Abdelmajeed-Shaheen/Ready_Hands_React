@@ -1,23 +1,23 @@
 import React from "react";
 import JobCard from "./JobCard";
 import { Grid } from "@material-ui/core";
-const JobList = () => {
+import { connect } from "react-redux";
+
+const JobList = ({ jobs }) => {
+  const jobslist = jobs.map(job => <JobCard job={job} />);
   return (
     <div className="container py-5">
       <Grid container spacing={4}>
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
+        {jobslist}
       </Grid>
     </div>
   );
 };
-export default JobList;
+
+const mapStateToProps = state => {
+  return {
+    jobs: state.jobsState.jobs,
+  };
+};
+
+export default connect(mapStateToProps)(JobList);

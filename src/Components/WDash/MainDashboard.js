@@ -1,10 +1,13 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import MainPanel from "./MainPanel";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import * as actions from "../../redux/actions";
 
-const MainDashboard = ({ location, user }) => {
-  // if (!user) return <Redirect to="/home" />;
+const MainDashboard = ({ location, user, getAllJobs }) => {
+  getAllJobs();
+  if (!user) return <Redirect to="/home" />;
   return (
     <div className="wrapper">
       <Sidebar location={location} />
@@ -13,10 +16,16 @@ const MainDashboard = ({ location, user }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     user: state.userState.user,
   };
 };
 
-export default connect(mapStateToProps)(MainDashboard);
+const mapDispatchToProps = dispatch => {
+  return {
+    getAllJobs: () => dispatch(actions.getAllJobs()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainDashboard);

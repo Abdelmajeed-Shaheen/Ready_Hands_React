@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import TextField from "@material-ui/core/TextField";
 
 export default class ContactInfo extends Component {
   continue = (e) => {
@@ -26,31 +25,48 @@ export default class ContactInfo extends Component {
               </div>
             </div>
             <div className="row py-2">
-              <form noValidate autoComplete="off">
-                <TextField
+              <div class="form-group col-xs-4 col-md-4">
+                <label for="name" class="control-label">
+                  Phone Number
+                </label>
+                <input
                   required
-                  id="standard-basic"
-                  label="Phone number"
-                  style={{ marginLeft: 30, paddingRight: 10 }}
+                  type="text"
+                  className="form-control"
+                  id="phoneNumber"
                   value={values.phoneNumber}
                   onChange={handleChange("phoneNumber")}
+                  placeholder="phone number..."
                 />
-                <TextField
+              </div>
+              <div class="form-group col-xs-4 col-md-4">
+                <label for="name" class="control-label">
+                  Email
+                </label>
+                <input
                   required
-                  id="standard-basic"
-                  label="Email"
-                  style={{ paddingRight: 10 }}
+                  type="text"
+                  className="form-control"
+                  id="email"
                   value={values.email}
                   onChange={handleChange("email")}
+                  placeholder="phone number..."
                 />
-                <TextField
+              </div>
+              <div class="form-group col-xs-4 col-md-4">
+                <label for="name" class="control-label">
+                  Address
+                </label>
+                <input
                   required
-                  id="standard-basic"
-                  label="Address"
+                  type="text"
+                  className="form-control"
+                  id="address"
                   value={values.address}
                   onChange={handleChange("address")}
+                  placeholder="phone number..."
                 />
-              </form>
+              </div>
             </div>
             <button
               className="btn btn-primary mt-5"
@@ -58,7 +74,7 @@ export default class ContactInfo extends Component {
               style={{
                 position: "absolute",
                 right: 0,
-
+                marginTop: 20,
                 color: "white",
                 backgroundColor: "#00695c",
                 borderColor: "#00695c",
@@ -72,6 +88,7 @@ export default class ContactInfo extends Component {
               style={{
                 position: "absolute",
                 left: 0,
+                marginTop: 20,
               }}
             >
               Back

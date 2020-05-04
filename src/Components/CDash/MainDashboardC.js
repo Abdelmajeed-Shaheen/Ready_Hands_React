@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 const MainDashboardC = ({ location, user }) => {
-  // if (!user) return <Redirect to="/home" />;
+  if (!user) return <Redirect to="/home" />;
   return (
     <div className="wrapper">
       <SidebarC location={location} />
@@ -14,7 +14,7 @@ const MainDashboardC = ({ location, user }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     user: state.userState.user,
   };
