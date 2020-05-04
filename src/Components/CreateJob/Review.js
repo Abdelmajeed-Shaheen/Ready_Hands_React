@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { List, ListItem, ListItemText } from "@material-ui/core/";
 
 export default class Review extends Component {
-  confirm = values => {
+  // what does this do?
+  confirm = (values) => {
     const postData = {
       dateFrom: values.dateFrom,
       dateTo: values.dateTo,
@@ -19,7 +20,7 @@ export default class Review extends Component {
     };
   };
 
-  back = e => {
+  back = (e) => {
     e.preventDefault();
     this.props.prevStep();
   };
@@ -60,6 +61,10 @@ export default class Review extends Component {
                 overflowY: "scroll",
               }}
             >
+              {/* this list should be a .map()
+              You can make an array of objects with two properties
+              for primary and secondary
+             */}
               <List>
                 <ListItem>
                   <ListItemText primary="Date from" secondary={dateFrom} />

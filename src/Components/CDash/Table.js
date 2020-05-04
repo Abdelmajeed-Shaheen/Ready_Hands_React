@@ -1,5 +1,5 @@
 import React from "react";
-
+//whats this for?
 const Table = () => {
   return (
     <div class="content">
