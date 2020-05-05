@@ -53,8 +53,7 @@ export const signup = (userData, history, clientorworker, type) => {
       } else if (type === "client") {
         await instance.post("client/create/", clientorworker);
       }
-      dispatch(setCurrentUser(user.tokens.access));
-      history.replace("/dashboard");
+      dispatch(setCurrentUser(user.tokens.access, history));
     } catch (err) {
       dispatch({
         type: SET_ERRORS,

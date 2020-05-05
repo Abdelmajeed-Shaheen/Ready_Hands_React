@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Navbar from "./Components/Home/Navbar";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Signup&Login/Login";
-import HorizontalLinearStepper from "./Components/CreateJob/CreatePost";
 import UserForm from "./Components/Signup&Login/Register/UserForm";
 import MainDashboard from "./Components/WDash/MainDashboard";
 import MainDashboardC from "./Components/CDash/MainDashboardC";
@@ -15,7 +14,6 @@ function App() {
       <Switch>
         <Route path="/home" component={Home} />
         <Route path="/login" component={Login} />
-        <Route path="/create/job" component={HorizontalLinearStepper} />
         <Route path="/register" component={UserForm} />
         <Route path="/worker/dashboard" component={MainDashboard} />
         <Route path="/client/dashboard" component={MainDashboardC} />

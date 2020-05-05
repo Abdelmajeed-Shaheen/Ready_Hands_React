@@ -1,6 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const Dashboard = () => {
+const Dashboard = ({ appliedjobs }) => {
+  let totalincome = 0.0;
+  const totaljobs = appliedjobs.length;
+  const acceptedjobs = appliedjobs.filter(job => job.acccepted === true);
+  const pendingjobs = appliedjobs.filter(job => job.acccepted === false);
+  acceptedjobs.map(
+    job => (totalincome = totalincome + parseFloat(job.job.price))
+  );
   return (
     <div className="content">
       <div className="container-fluid">
@@ -9,19 +17,13 @@ const Dashboard = () => {
             <div className="card card-stats">
               <div className="card-header card-header-warning card-header-icon">
                 <div className="card-icon">
-                  <i className="material-icons">content_copy</i>
+                  <i className="material-icons">work_outline</i>
                 </div>
-                <p className="card-category">Used Space</p>
-                <h3 className="card-title">
-                  49/50
-                  <small>GB</small>
-                </h3>
+                <p className="card-category">Applied Jobs</p>
+                <h3 className="card-title">{totaljobs}</h3>
               </div>
               <div className="card-footer">
-                <div className="stats">
-                  <i className="material-icons text-danger">warning</i>
-                  <a href="javascript:;">Get More Space...</a>
-                </div>
+                <div className="stats"></div>
               </div>
             </div>
           </div>
@@ -29,15 +31,13 @@ const Dashboard = () => {
             <div className="card card-stats">
               <div className="card-header card-header-success card-header-icon">
                 <div className="card-icon">
-                  <i className="material-icons">store</i>
+                  <i className="material-icons">account_balance_wallet</i>
                 </div>
                 <p className="card-category">Revenue</p>
-                <h3 className="card-title">$34,245</h3>
+                <h3 className="card-title">{totalincome}JOD</h3>
               </div>
               <div className="card-footer">
-                <div className="stats">
-                  <i className="material-icons">date_range</i> Last 24 Hours
-                </div>
+                <div className="stats"></div>
               </div>
             </div>
           </div>
@@ -45,16 +45,15 @@ const Dashboard = () => {
             <div className="card card-stats">
               <div className="card-header card-header-danger card-header-icon">
                 <div className="card-icon">
-                  <i className="material-icons">info_outline</i>
+                  <i className="material-icons">hourglass_empty</i>
                 </div>
-                <p className="card-category">Fixed Issues</p>
-                <h3 className="card-title">75</h3>
+                <p className="card-category">Pending Jobs</p>
+                <h3 className="card-title">
+                  {pendingjobs.length}/{totaljobs}
+                </h3>
               </div>
               <div className="card-footer">
-                <div className="stats">
-                  <i className="material-icons">local_offer</i> Tracked from
-                  Github
-                </div>
+                <div className="stats"></div>
               </div>
             </div>
           </div>
@@ -62,15 +61,15 @@ const Dashboard = () => {
             <div className="card card-stats">
               <div className="card-header card-header-info card-header-icon">
                 <div className="card-icon">
-                  <i className="fa fa-twitter"></i>
+                  <i className="material-icons">check</i>
                 </div>
-                <p className="card-category">Followers</p>
-                <h3 className="card-title">+245</h3>
+                <p className="card-category">Acepted Jobs</p>
+                <h3 className="card-title">
+                  {acceptedjobs.length}/{totaljobs}
+                </h3>
               </div>
               <div className="card-footer">
-                <div className="stats">
-                  <i className="material-icons">update</i> Just Updated
-                </div>
+                <div className="stats"></div>
               </div>
             </div>
           </div>
@@ -84,33 +83,26 @@ const Dashboard = () => {
                 style={{ backgroundColor: "#669999" }}
               >
                 <h4 className="card-title" style={{ color: "white" }}>
-                  Employees Stats
+                  Pending Jobs
                 </h4>
-                <p className="card-category" style={{ color: "white" }}>
-                  New employees on 15th September, 2016
-                </p>
               </div>
               <div className="card-body table-responsive">
                 <table className="table table-hover">
                   <thead className="text-warning">
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Salary</th>
-                    <th>Country</th>
+                    <th>Title</th>
+                    <th>Start Date</th>
+                    <th>Service</th>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Dakota Rice</td>
-                      <td>$36,738</td>
-                      <td>Niger</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Minerva Hooper</td>
-                      <td>$23,789</td>
-                      <td>Curaçao</td>
-                    </tr>
+                    {pendingjobs.map((job, index) => (
+                      <tr>
+                        <td>{index + 1}</td>
+                        <td>{job.job.title}</td>
+                        <td>{job.job.date_from.substring(0, 10)}</td>
+                        <td>{job.job.service.title}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
@@ -123,33 +115,26 @@ const Dashboard = () => {
                 style={{ backgroundColor: "#669999" }}
               >
                 <h4 className="card-title" style={{ color: "white" }}>
-                  Employees Stats
+                  Accepted Jobs
                 </h4>
-                <p className="card-category" style={{ color: "white" }}>
-                  New employees on 15th September, 2016
-                </p>
               </div>
               <div className="card-body table-responsive">
                 <table className="table table-hover">
                   <thead className="text-warning">
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Salary</th>
-                    <th>Country</th>
+                    <th>Title</th>
+                    <th>Start Date</th>
+                    <th>Service</th>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Dakota Rice</td>
-                      <td>$36,738</td>
-                      <td>Niger</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Minerva Hooper</td>
-                      <td>$23,789</td>
-                      <td>Curaçao</td>
-                    </tr>
+                    {acceptedjobs.map((job, index) => (
+                      <tr>
+                        <td>{index + 1}</td>
+                        <td>{job.job.title}</td>
+                        <td>{job.job.date_from.substring(0, 10)}</td>
+                        <td>{job.job.service.title}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
@@ -160,5 +145,10 @@ const Dashboard = () => {
     </div>
   );
 };
+const mapStateToProps = state => {
+  return {
+    appliedjobs: state.jobsState.appliedjobs,
+  };
+};
 
-export default Dashboard;
+export default connect(mapStateToProps)(Dashboard);

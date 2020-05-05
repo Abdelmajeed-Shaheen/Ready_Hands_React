@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Home = () => {
+const Home = ({ user }) => {
   return (
     <>
       <header className="masthead">
@@ -15,20 +15,36 @@ const Home = () => {
             </div>
             <div className="col-lg-8 align-self-baseline">
               <div className="row mt-5">
-                <div className="col mr-5">
-                  <Link to="/register" style={{ textDecoration: "none" }}>
-                    <button className=" btn btn-block homebtn">
-                      Find A Job
-                    </button>
-                  </Link>
-                </div>
-                <div className="col">
-                  <Link to="/create/job" style={{ textDecoration: "none" }}>
-                    <button className=" btn btn-block homebtn">
-                      Find A Worker
-                    </button>
-                  </Link>
-                </div>
+                {!user ? (
+                  <div className="col">
+                    <Link to="/register" style={{ textDecoration: "none" }}>
+                      <button
+                        className=" btn homebtn"
+                        style={{ width: "250px" }}
+                      >
+                        Register
+                      </button>
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="col">
+                    <Link
+                      to={
+                        user.user.type === "is_client"
+                          ? "/client/dashboard"
+                          : "/worker/dashboard"
+                      }
+                      style={{ textDecoration: "none" }}
+                    >
+                      <button
+                        className=" btn  homebtn"
+                        style={{ width: "250px" }}
+                      >
+                        Dashboard
+                      </button>
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>

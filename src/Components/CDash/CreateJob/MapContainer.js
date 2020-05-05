@@ -9,12 +9,12 @@ const mapStyles = {
 };
 
 export class MapContainer extends Component {
-  continue = (e) => {
+  continue = e => {
     e.preventDefault();
     this.props.nextStep();
   };
 
-  back = (e) => {
+  back = e => {
     e.preventDefault();
     this.props.prevStep();
   };
@@ -56,5 +56,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: " AIzaSyA66cVvOv - sT65Mb7nX2NvuTGp61DBPn3Q",
+  apiKey: "AIzaSyCKB7OSirN7IC8iSVD7nR1-mkj7YFpQm6E",
 })(MapContainer);

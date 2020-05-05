@@ -12,12 +12,11 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import test from "../../assets/images/test1.png";
-import Button from "@material-ui/core/Button";
-import Icon from "@material-ui/core/Icon";
-const useStyles = makeStyles((theme) => ({
+import profile from "../../assets/images/profile.png";
+
+const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: 345,
   },
@@ -39,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: red[500],
   },
 }));
-const JobCard = () => {
+const JobCardC = ({ job }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
@@ -50,39 +49,31 @@ const JobCard = () => {
       <Card className={classes.root}>
         <CardHeader
           avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
-              R
-            </Avatar>
+            <Avatar
+              aria-label="recipe"
+              className={classes.avatar}
+              alt={job.client.user.username}
+              src={profile}
+            />
           }
-          // action={
-          //   <IconButton aria-label="settings">
-          //     <MoreVertIcon />
-          //   </IconButton>
-          // }
-          title="Job 1"
-          subheader="September 14, 2016"
+          title={job.title}
+          subheader={`from ${job.date_from.substring(0, 10)}
+           to ${job.date_to.substring(0, 10)} `}
         />
-        <CardMedia className={classes.media} image={test} title="Paella dish" />
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            I'm looking for a ..... , for this specific job
-          </Typography>
-        </CardContent>
+        <CardMedia
+          className={classes.media}
+          image={test}
+          title="Paella dish"
+          onClick={() =>
+            window.open(
+              "https://www.google.com/maps/search/?api=1&query=" +
+                job.latitude +
+                "," +
+                job.longitude
+            )
+          }
+        />
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            endIcon={<Icon>send</Icon>}
-          >
-            Apply Now
-          </Button>
-          {/* <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton> */}
           <IconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
@@ -96,12 +87,21 @@ const JobCard = () => {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>More Details:</Typography>
-            <Typography paragraph>Payment... rate.....</Typography>
+            <Typography paragraph>Service Type: {job.service.title}</Typography>
+            <Typography paragraph>Price: {job.price}JD</Typography>
+            <Typography paragraph>
+              Starts at: {job.date_from.substring(11, 16)}
+            </Typography>
+            <Typography paragraph>
+              Minimum Rating: {job.rating_range}
+            </Typography>
+            <Typography paragraph>
+              Number of Workers: {job.no_of_workers} , Gender: {job.gender}
+            </Typography>
           </CardContent>
         </Collapse>
       </Card>
     </Grid>
   );
 };
-export default JobCard;
+export default JobCardC;

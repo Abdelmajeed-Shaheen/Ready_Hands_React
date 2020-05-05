@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as actions from "../../redux/actions";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -14,6 +16,7 @@ import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import test from "../../assets/images/test1.png";
+import profile from "../../assets/images/profile.png";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 const useStyles = makeStyles(theme => ({
@@ -38,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: red[500],
   },
 }));
-const JobCard = ({ job }) => {
+const JobCard = ({ job, appliedjobs, applyToJob }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
@@ -49,9 +52,12 @@ const JobCard = ({ job }) => {
       <Card className={classes.root}>
         <CardHeader
           avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
-              {job.client.user.username[0].toUpperCase()}
-            </Avatar>
+            <Avatar
+              aria-label="recipe"
+              className={classes.avatar}
+              alt={job.client.user.username}
+              src={profile}
+            />
           }
           title={job.title}
           subheader={`from ${job.date_from.substring(0, 10)}
@@ -64,9 +70,9 @@ const JobCard = ({ job }) => {
           onClick={() =>
             window.open(
               "https://www.google.com/maps/search/?api=1&query=" +
-                job.address.longitude +
+                job.latitude +
                 "," +
-                job.address.latitude
+                job.longitude
             )
           }
         />
@@ -76,14 +82,27 @@ const JobCard = ({ job }) => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            endIcon={<Icon>check_circle_outline</Icon>}
-          >
-            Apply
-          </Button>
+          {!appliedjobs.filter(appliedjob => appliedjob.job.id === job.id)
+            .length ? (
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#669999", color: "white" }}
+              className={classes.button}
+              endIcon={<Icon>check_circle_outline</Icon>}
+              onClick={() => applyToJob(job.id)}
+            >
+              Apply
+            </Button>
+          ) : (
+            <Typography
+              variant="body2"
+              component="p"
+              style={{ color: "green" }}
+            >
+              You Applied For This Job
+            </Typography>
+          )}
+
           <IconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
@@ -114,4 +133,16 @@ const JobCard = ({ job }) => {
     </Grid>
   );
 };
-export default JobCard;
+
+const mapStateToProps = state => {
+  return {
+    appliedjobs: state.jobsState.appliedjobs,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    applyToJob: job_id => dispatch(actions.applyToJob(job_id)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(JobCard);

@@ -40,22 +40,20 @@ export class CreatePost extends Component {
     });
   };
 
-  settype = (type) => {
+  settype = type => {
     this.setState({ type: type });
   };
 
   // Handle fields change
-  handleChange = (input) => (e) => {
+  handleChange = input => e => {
     this.setState({ [input]: e.target.value });
   };
 
-  handleSelect = (input) => (e) => {
+  handleSelect = input => e => {
     this.setState({ [input]: e.target.value });
   };
 
   render() {
-    if (this.props.user && this.props.user.user.type !== "none")
-      return <Redirect to="/home" />;
     const { step } = this.state;
     const {
       dateFrom,
@@ -137,7 +135,7 @@ export class CreatePost extends Component {
     }
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     user: state.userState.user,
   };

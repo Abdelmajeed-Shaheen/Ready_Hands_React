@@ -5,12 +5,18 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 
-const MainDashboard = ({ location, user, getAllJobs }) => {
+const MainDashboard = ({
+  location,
+  user,
+  getAllJobs,
+  getWorkerAppliedJobs,
+}) => {
   getAllJobs();
+  getWorkerAppliedJobs();
   if (!user) return <Redirect to="/home" />;
   return (
     <div className="wrapper">
-      <Sidebar location={location} />
+      <Sidebar location={location} user={user.user.username} />
       <MainPanel location={location} />
     </div>
   );
@@ -25,6 +31,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getAllJobs: () => dispatch(actions.getAllJobs()),
+    getWorkerAppliedJobs: () => dispatch(actions.getWorkerAppliedJobs()),
   };
 };
 

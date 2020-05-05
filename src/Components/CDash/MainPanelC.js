@@ -4,6 +4,7 @@ import FooterC from "./FooterC";
 import ProfileC from "./ProfileC";
 import JobListC from "./JobListC";
 import Table from "./Table";
+import HorizontalLinearStepper from "./CreateJob/CreatePost";
 
 const MainPanelC = ({ location }) => {
   return (
@@ -12,6 +13,9 @@ const MainPanelC = ({ location }) => {
       {location.pathname === "/client/dashboard" && <DashboardC />}
       {location.pathname === "/client/dashboard/profile" && <ProfileC />}
       {location.pathname === "/client/dashboard/table" && <Table />}
+      {location.pathname === "/client/dashboard/create/job" && (
+        <HorizontalLinearStepper />
+      )}
       <FooterC />
     </div>
   );

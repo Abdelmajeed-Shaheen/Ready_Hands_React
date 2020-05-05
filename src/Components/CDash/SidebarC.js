@@ -51,6 +51,16 @@ const SidebarC = ({ location }) => {
               <p>Table</p>
             </Link>
           </li>
+          <li
+            className={`nav-item ${
+              location.pathname === "/client/dashboard/create/job" && "active"
+            }`}
+          >
+            <Link className="nav-link" to="/client/dashboard/create/job">
+              <i className="material-icons">post_add</i>
+              <p>Create A Job</p>
+            </Link>
+          </li>
         </ul>
       </div>
     </div>

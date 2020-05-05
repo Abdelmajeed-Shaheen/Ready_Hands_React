@@ -21,7 +21,7 @@ class Login extends Component {
     const { username, password } = this.state;
 
     return (
-      <div className="bglogin">
+      <div className="regback">
         <div className="container-fluid jumbotron bg-transparent  text-center align-ceneter">
           <div className=" col-6 mx-auto my-5">
             <div

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
 export default class ContactInfo extends Component {
-  continue = (e) => {
+  continue = e => {
     e.preventDefault();
     this.props.nextStep();
   };
 
-  back = (e) => {
+  back = e => {
     e.preventDefault();
     this.props.prevStep();
   };
