@@ -19,7 +19,7 @@ import test from "../../assets/images/test1.png";
 import profile from "../../assets/images/profile.png";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
   },
@@ -82,7 +82,8 @@ const JobCard = ({ job, appliedjobs, applyToJob }) => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          {!appliedjobs.filter(appliedjob => appliedjob.job.id === job.id)
+          {/* use .find() */}
+          {!appliedjobs.filter((appliedjob) => appliedjob.job.id === job.id)
             .length ? (
             <Button
               variant="contained"
@@ -134,15 +135,15 @@ const JobCard = ({ job, appliedjobs, applyToJob }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     appliedjobs: state.jobsState.appliedjobs,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    applyToJob: job_id => dispatch(actions.applyToJob(job_id)),
+    applyToJob: (job_id) => dispatch(actions.applyToJob(job_id)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(JobCard);
