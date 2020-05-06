@@ -2,19 +2,17 @@ import React from "react";
 import DashboardC from "./DashboardC";
 import FooterC from "./FooterC";
 import ProfileC from "./ProfileC";
-import JobListC from "./JobListC";
 import Table from "./Table";
-import HorizontalLinearStepper from "./CreateJob/CreatePost";
+import CreateJob from "./CreateJob";
 
-const MainPanelC = ({ location }) => {
+const MainPanelC = ({ location, history }) => {
   return (
     <div className="main-panel">
-      {location.pathname === "/client/dashboard/jobs/list" && <JobListC />}
       {location.pathname === "/client/dashboard" && <DashboardC />}
       {location.pathname === "/client/dashboard/profile" && <ProfileC />}
-      {location.pathname === "/client/dashboard/table" && <Table />}
+      {location.pathname === "/client/dashboard/myjobs" && <Table />}
       {location.pathname === "/client/dashboard/create/job" && (
-        <HorizontalLinearStepper />
+        <CreateJob history={history} />
       )}
       <FooterC />
     </div>

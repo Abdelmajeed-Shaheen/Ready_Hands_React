@@ -9648,8 +9648,10 @@ textarea {
 }
 
 .alert.alert-warning {
-  background-color: #ff9e0f;
+  background-color: #e57373;
   color: #ffffff;
+  font-weight: bold;
+  text-align: center;
 }
 
 .alert.alert-warning a,
@@ -12045,13 +12047,12 @@ label {
   background: linear-gradient(60deg, #ff8800, #ffbb33);
 }
 /* card1 & below */
-.card .card-header-warning .card-icon,
-.card .card-header-warning .card-text,
+.card .card-header-warning .card-icon .card .card-header-warning .card-text,
 .card .card-header-warning:not(.card-header-icon):not(.card-header-text),
 .card.bg-warning,
 .card.card-rotate.bg-warning .front,
 .card.card-rotate.bg-warning .back {
-  background: linear-gradient(60deg, #980dc2, #fbff23);
+  background: linear-gradient(60deg, #669996, #669996);
 }
 
 /* card3 */

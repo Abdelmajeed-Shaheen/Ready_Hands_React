@@ -32,23 +32,12 @@ const SidebarC = ({ location }) => {
 
           <li
             className={`nav-item ${
-              location.pathname === "/client/dashboard/jobs/list" && "active"
+              location.pathname === "/client/dashboard/myjobs" && "active"
             }`}
           >
-            <Link className="nav-link" to="/client/dashboard/jobs/list">
-              <i className="material-icons">content_paste</i>
-              <p>Jobs List</p>
-            </Link>
-          </li>
-
-          <li
-            className={`nav-item ${
-              location.pathname === "/client/dashboard/table" && "active"
-            }`}
-          >
-            <Link className="nav-link" to="/client/dashboard/table">
+            <Link className="nav-link" to="/client/dashboard/myjobs">
               <i className="material-icons">table_chart</i>
-              <p>Table</p>
+              <p>My Jobs</p>
             </Link>
           </li>
           <li

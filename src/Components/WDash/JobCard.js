@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import moment from "moment";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -60,8 +61,10 @@ const JobCard = ({ job, appliedjobs, applyToJob }) => {
             />
           }
           title={job.title}
-          subheader={`from ${job.date_from.substring(0, 10)}
-           to ${job.date_to.substring(0, 10)} `}
+          subheader={`from : ${moment(job.date_from).format(
+            "dddd MMMM , h:mm a"
+          )}
+          to : ${moment(job.date_to).format("dddd MMMM , h:mm a")} `}
         />
         <CardMedia
           className={classes.media}

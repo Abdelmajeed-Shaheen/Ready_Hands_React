@@ -16,7 +16,10 @@ const Dashboard = ({ appliedjobs }) => {
           <div className="col-lg-3 col-md-6 col-sm-6">
             <div className="card card-stats">
               <div className="card-header card-header-warning card-header-icon">
-                <div className="card-icon">
+                <div
+                  className="card-icon"
+                  style={{ backgroundColor: "#dce775" }}
+                >
                   <i className="material-icons">work_outline</i>
                 </div>
                 <p className="card-category">Applied Jobs</p>

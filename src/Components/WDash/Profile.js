@@ -28,7 +28,7 @@ const Profile = ({ user }) => {
                   </li>
                   <li className="list-group-item">
                     <Box component="fieldset" mb={3} borderColor="transparent">
-                      <Typography component="legend">Read only</Typography>
+                      <Typography component="legend">Rating</Typography>
                       <Rating
                         name="read-only"
                         value={parseInt(user.rating)}

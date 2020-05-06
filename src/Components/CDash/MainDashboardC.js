@@ -5,13 +5,20 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 
-const MainDashboardC = ({ location, user, getClientJobs }) => {
+const MainDashboardC = ({
+  history,
+  location,
+  user,
+  getClientJobs,
+  getServices,
+}) => {
   getClientJobs();
+  getServices();
   if (!user) return <Redirect to="/home" />;
   return (
     <div className="wrapper">
       <SidebarC location={location} />
-      <MainPanelC location={location} />
+      <MainPanelC location={location} history={history} />
     </div>
   );
 };
@@ -24,6 +31,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getClientJobs: () => dispatch(actions.getClientJobs()),
+    getServices: () => dispatch(actions.getServices()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(MainDashboardC);

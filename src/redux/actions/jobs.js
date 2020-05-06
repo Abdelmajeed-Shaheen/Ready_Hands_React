@@ -2,7 +2,8 @@ import {
   GET_JOBS,
   GET_CLIENT_JOBS,
   GET_WORKER_APPLIED_JOBS,
-  JOB_APPLY,
+  GET_SERVICES,
+  GET_CLIENT_JOBS_APPLICANTS,
 } from "./actionTypes";
 import { instance } from "./instance";
 
@@ -51,9 +52,49 @@ export const getWorkerAppliedJobs = () => {
 export const applyToJob = job_id => {
   return async dispatch => {
     try {
-      await instance.post(`worker/job/${job_id}/apply/`);
+      await instance.post(`jobs/${job_id}/apply/`);
       dispatch(getAllJobs());
       dispatch(getWorkerAppliedJobs());
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const getServices = () => {
+  return async dispatch => {
+    try {
+      const res = await instance.get("services/");
+      dispatch({
+        type: GET_SERVICES,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const createJob = (job, history) => {
+  return async dispatch => {
+    try {
+      await instance.post(`jobs/create/`, job);
+      dispatch(getClientJobs());
+      history.replace("/client/dashboard");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const getJobApplicants = job_id => {
+  return async dispatch => {
+    try {
+      const res = await instance.get(`jobs/${job_id}/applicants/`);
+      dispatch({
+        type: GET_CLIENT_JOBS_APPLICANTS,
+        payload: res.data,
+      });
     } catch (err) {
       console.log(err);
     }
