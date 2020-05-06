@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 const Dashboard = ({ appliedjobs }) => {
   let totalincome = 0.0;
   const totaljobs = appliedjobs.length;
-  const acceptedjobs = appliedjobs.filter(job => job.acccepted === true);
-  const pendingjobs = appliedjobs.filter(job => job.acccepted === false);
-  acceptedjobs.map(
-    job => (totalincome = totalincome + parseFloat(job.job.price))
+  const acceptedjobs = appliedjobs.filter((job) => job.acccepted === true);
+  const pendingjobs = appliedjobs.filter((job) => job.acccepted === false);
+  acceptedjobs.forEach(
+    (job) => (totalincome = totalincome + parseFloat(job.job.price))
   );
   return (
     <div className="content">
@@ -63,7 +63,7 @@ const Dashboard = ({ appliedjobs }) => {
                 <div className="card-icon">
                   <i className="material-icons">check</i>
                 </div>
-                <p className="card-category">Acepted Jobs</p>
+                <p className="card-category">Accepted Jobs</p>
                 <h3 className="card-title">
                   {acceptedjobs.length}/{totaljobs}
                 </h3>
@@ -145,7 +145,7 @@ const Dashboard = ({ appliedjobs }) => {
     </div>
   );
 };
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     appliedjobs: state.jobsState.appliedjobs,
   };

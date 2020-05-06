@@ -2,9 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 
 const DashboardC = ({ jobs }) => {
+  // totalJobs !!
   const totaljobs = jobs.length;
+  // pendingJobs !!
   const pendingjobs = jobs.filter(job => job.status === "P");
+  // selectedJobs !!
   const selectedjobs = jobs.filter(job => job.status === "S");
+  // finishedJobs !!
   const finishedjobs = jobs.filter(job => job.status === "F");
   return (
     <div className="content">
@@ -74,6 +78,9 @@ const DashboardC = ({ jobs }) => {
           </div>
         </div>
 
+        {/* This row should be a reusable component for Pending Jobs and Selected Jobs and receives
+          the array of jobs as a prop.
+         */}
         <div className="row">
           <div className="col-lg-6 col-md-12">
             <div className="card">
