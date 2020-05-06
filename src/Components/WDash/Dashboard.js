@@ -89,7 +89,10 @@ const Dashboard = ({ appliedjobs }) => {
                   Pending Jobs
                 </h4>
               </div>
-              <div className="card-body table-responsive">
+              <div
+                className="card-body table-responsive"
+                style={{ overflowY: "auto", height: "400px" }}
+              >
                 <table className="table table-hover">
                   <thead className="text-warning">
                     <th>ID</th>
@@ -121,13 +124,16 @@ const Dashboard = ({ appliedjobs }) => {
                   Accepted Jobs
                 </h4>
               </div>
-              <div className="card-body table-responsive">
+              <div
+                className="card-body table-responsive"
+                style={{ overflowY: "auto", height: "400px" }}
+              >
                 <table className="table table-hover">
                   <thead className="text-warning">
                     <th>ID</th>
                     <th>Title</th>
                     <th>Start Date</th>
-                    <th>Service</th>
+                    <th>Payment</th>
                   </thead>
                   <tbody>
                     {acceptedjobs.map((job, index) => (
@@ -135,7 +141,7 @@ const Dashboard = ({ appliedjobs }) => {
                         <td>{index + 1}</td>
                         <td>{job.job.title}</td>
                         <td>{job.job.date_from.substring(0, 10)}</td>
-                        <td>{job.job.service.title}</td>
+                        <td>{job.job.price} JOD</td>
                       </tr>
                     ))}
                   </tbody>

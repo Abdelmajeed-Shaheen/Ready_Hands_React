@@ -100,3 +100,15 @@ export const getJobApplicants = job_id => {
     }
   };
 };
+
+export const acceptApplicant = (applicant_id, history) => {
+  return async dispatch => {
+    try {
+      await instance.post(`applicant/${applicant_id}/accept/`);
+      dispatch(getClientJobs());
+      history.replace("/client/dashboard/myjobs");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};

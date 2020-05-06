@@ -7,4 +7,5 @@ export {
   getServices,
   createJob,
   getJobApplicants,
+  acceptApplicant,
 } from "./jobs";

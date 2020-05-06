@@ -61,10 +61,8 @@ const JobCard = ({ job, appliedjobs, applyToJob }) => {
             />
           }
           title={job.title}
-          subheader={`from : ${moment(job.date_from).format(
-            "dddd MMMM , h:mm a"
-          )}
-          to : ${moment(job.date_to).format("dddd MMMM , h:mm a")} `}
+          subheader={`from : ${moment(job.date_from).format("llll")}
+          to : ${moment(job.date_to).format("llll")} `}
         />
         <CardMedia
           className={classes.media}

@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import JobCard from "./JobCard";
+import * as actions from "../../redux/actions";
+import moment from "moment";
+import Rating from "@material-ui/lab/Rating";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 import { mapStyles } from "./mapStyles";
 import {
   withScriptjs,
@@ -10,7 +14,7 @@ import {
   InfoWindow,
 } from "react-google-maps";
 
-const Maps = ({ jobs }) => {
+const Maps = ({ jobs, applyToJob, appliedjobs }) => {
   const [selectedJob, setSelectedJob] = useState(null);
   const markerslist = jobs.map(job => (
     <Marker
@@ -42,8 +46,49 @@ const Maps = ({ jobs }) => {
             onCloseClick={() => setSelectedJob(null)}
           >
             <div>
-              <h2>{selectedJob.title}</h2>
-              <p>{selectedJob.service.title}</p>
+              <h5 className="card-title">{selectedJob.title}</h5>
+              <h6 className="card-subtitle mb-2 text-muted">
+                {`from : ${moment(selectedJob.date_from).format("llll")}`}
+              </h6>
+              <h6 className="card-subtitle mb-2 text-muted">
+                {`to : ${moment(selectedJob.date_to).format("llll")} `}
+              </h6>
+              <p className="card-text">Price: {selectedJob.price} JOD</p>
+              <p className="card-text">
+                Gender:{" "}
+                {!selectedJob.gender
+                  ? "ANY"
+                  : selectedJob.gender === "M"
+                  ? "Male"
+                  : "Female"}
+              </p>
+              <p className="card-text">
+                <Box component="fieldset" mb={3} borderColor="transparent">
+                  <Typography component="legend">Rating</Typography>
+                  <Rating
+                    name="read-only"
+                    value={parseInt(selectedJob.rating_range)}
+                    readOnly
+                  />
+                </Box>
+              </p>
+              <p className="card-text">
+                No. Workers: {selectedJob.no_of_workers}
+              </p>
+              {!appliedjobs.filter(
+                appliedjob => appliedjob.job.id === selectedJob.id
+              ).length ? (
+                <button
+                  className="btn btn-primary btn-sm"
+                  onClick={() => applyToJob(selectedJob.id)}
+                >
+                  Apply
+                </button>
+              ) : (
+                <h6 className="card-subtitle mb-2" style={{ color: "green" }}>
+                  Already Applied
+                </h6>
+              )}
             </div>
           </InfoWindow>
         )}
@@ -67,7 +112,12 @@ const Maps = ({ jobs }) => {
 const mapStateToProps = state => {
   return {
     jobs: state.jobsState.jobs,
+    appliedjobs: state.jobsState.appliedjobs,
   };
 };
-
-export default connect(mapStateToProps)(Maps);
+const mapDispatchToProps = dispatch => {
+  return {
+    applyToJob: job_id => dispatch(actions.applyToJob(job_id)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Maps);

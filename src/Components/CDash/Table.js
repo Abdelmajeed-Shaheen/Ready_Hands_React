@@ -27,9 +27,7 @@ const Table = ({ jobs }) => {
                         <tr>
                           <td>{index + 1}</td>
                           <td>{job.title}</td>
-                          <td>
-                            {moment(job.date_from).format("dddd MMMM , h:mm a")}
-                          </td>
+                          <td>{moment(job.date_from).format("llll")}</td>
                           <td>{job.price}JOD</td>
                           {job.status === "P" && (
                             <td style={{ color: "orange", fontWeight: "bold" }}>

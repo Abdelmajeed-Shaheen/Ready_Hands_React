@@ -14,7 +14,7 @@ class DashboardC extends Component {
     }
   }
   render() {
-    const { jobs } = this.props;
+    const { jobs, history, acceptApplicant } = this.props;
     const totaljobs = jobs.length;
     const pendingjobs = jobs.filter(job => job.status === "P");
     const selectedjobs = jobs.filter(job => job.status === "S");
@@ -173,8 +173,11 @@ class DashboardC extends Component {
                               </Box>
                             </td>
                             <td>
-                              <button className="btn btn-primary btn-sm">
-                                Assign
+                              <button
+                                className="btn btn-primary btn-sm"
+                                onClick={() => acceptApplicant(job.id, history)}
+                              >
+                                Accept
                               </button>
                             </td>
                           </tr>
@@ -200,6 +203,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getJobApplicants: job_id => dispatch(actions.getJobApplicants(job_id)),
+    acceptApplicant: (applicant_id, history) =>
+      dispatch(actions.acceptApplicant(applicant_id, history)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardC);

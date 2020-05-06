@@ -17,7 +17,7 @@ const initialState = {
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_JOBS:
-      const jobs = payload;
+      const jobs = payload.filter(job => job.status === "P");
       return {
         ...state,
         jobs: jobs,

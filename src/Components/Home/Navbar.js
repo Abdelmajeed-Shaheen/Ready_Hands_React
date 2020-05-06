@@ -119,14 +119,6 @@ const Navbar = ({ user, logout }) => {
       </MenuItem>
       {user ? (
         <>
-          <MenuItem>
-            <IconButton color="inherit">
-              <Badge badgeContent={0} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <p>Notifications</p>
-          </MenuItem>
           <MenuItem onClick={handleProfileMenuOpen}>
             <IconButton
               aria-label="account of current user"
@@ -171,11 +163,6 @@ const Navbar = ({ user, logout }) => {
             </Link>
             {user ? (
               <>
-                <IconButton color="inherit">
-                  <Badge badgeContent={0} color="secondary">
-                    <NotificationsIcon />
-                  </Badge>
-                </IconButton>
                 <IconButton
                   edge="end"
                   aria-label="account of current user"
