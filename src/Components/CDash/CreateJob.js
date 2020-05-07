@@ -17,10 +17,10 @@ class CreateJob extends Component {
     latitude: "",
     gender: "",
   };
-  handleChange = event =>
+  handleChange = (event) =>
     this.setState({ [event.target.name]: event.target.value });
 
-  setlonglat = position => {
+  setlonglat = (position) => {
     const lat = position.lat;
     const lng = position.lng;
     this.setState({ longitude: lng, latitude: lat });
@@ -51,7 +51,7 @@ class CreateJob extends Component {
         </label>
       );
     }
-    const serviceslist = this.props.services.map(service => (
+    const serviceslist = this.props.services.map((service) => (
       <label
         className="dropdown-item"
         onClick={() => this.setState({ service: service.title })}
@@ -65,7 +65,7 @@ class CreateJob extends Component {
           <div className="row ">
             <div className="col-md-6">
               <div className="card">
-                <div className="card-header card-header-primary">
+                <div className="card-header card-header-warning">
                   <h4 className="card-title">Create A Job</h4>
                 </div>
                 <div className="card-body">
@@ -123,7 +123,7 @@ class CreateJob extends Component {
                           data-enable-time
                           className="string"
                           value={date_from}
-                          onChange={date_from => {
+                          onChange={(date_from) => {
                             this.setState({
                               date_from: date_from[0].toISOString(),
                             });
@@ -137,7 +137,7 @@ class CreateJob extends Component {
                         <Flatpickr
                           data-enable-time
                           value={date_to}
-                          onChange={date_to => {
+                          onChange={(date_to) => {
                             this.setState({
                               date_to: date_to[0].toISOString(),
                             });
@@ -257,6 +257,10 @@ class CreateJob extends Component {
                   </div>
                   <button
                     className="btn btn-success pull-right"
+                    style={{
+                      backgroundColor: "#006064",
+                      borderColor: "#006064",
+                    }}
                     onClick={() =>
                       this.props.createJob(this.state, this.props.history)
                     }
@@ -277,13 +281,13 @@ class CreateJob extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     services: state.jobsState.services,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     createJob: (job, history) => dispatch(actions.createJob(job, history)),
   };

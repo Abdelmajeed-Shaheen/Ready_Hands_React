@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 
 export class FormClientDetails extends Component {
-  continue = e => {
+  continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
   };
-  back = e => {
+  back = (e) => {
     e.preventDefault();
     this.props.prevStep();
   };
@@ -63,8 +63,8 @@ export class FormClientDetails extends Component {
                 position: "absolute",
                 right: 0,
                 color: "white",
-                backgroundColor: "#00695c",
-                borderColor: "#00695c",
+                backgroundColor: "#006064",
+                borderColor: "#006064",
               }}
             >
               Continue
@@ -75,6 +75,8 @@ export class FormClientDetails extends Component {
               style={{
                 position: "absolute",
                 left: 0,
+                backgroundColor: "#ffb74d ",
+                borderColor: "#ffb74d ",
               }}
             >
               Back

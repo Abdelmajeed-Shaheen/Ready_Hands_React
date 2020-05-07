@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 const Dashboard = ({ appliedjobs }) => {
   let totalincome = 0.0;
   const totaljobs = appliedjobs.length;
-  const acceptedjobs = appliedjobs.filter(job => job.acccepted === true);
-  const pendingjobs = appliedjobs.filter(job => job.acccepted === false);
+  const acceptedjobs = appliedjobs.filter((job) => job.acccepted === true);
+  const pendingjobs = appliedjobs.filter((job) => job.acccepted === false);
   acceptedjobs.map(
-    job => (totalincome = totalincome + parseFloat(job.job.price))
+    (job) => (totalincome = totalincome + parseFloat(job.job.price))
   );
   return (
     <div className="content">
@@ -18,7 +18,7 @@ const Dashboard = ({ appliedjobs }) => {
               <div className="card-header card-header-warning card-header-icon">
                 <div
                   className="card-icon"
-                  style={{ backgroundColor: "#dce775" }}
+                  style={{ backgroundColor: "#00838f" }}
                 >
                   <i className="material-icons">work_outline</i>
                 </div>
@@ -32,8 +32,11 @@ const Dashboard = ({ appliedjobs }) => {
           </div>
           <div className="col-lg-3 col-md-6 col-sm-6">
             <div className="card card-stats">
-              <div className="card-header card-header-success card-header-icon">
-                <div className="card-icon">
+              <div className="card-header card-header-icon">
+                <div
+                  className="card-icon"
+                  style={{ backgroundColor: "#00acc1" }}
+                >
                   <i className="material-icons">account_balance_wallet</i>
                 </div>
                 <p className="card-category">Revenue</p>
@@ -46,8 +49,11 @@ const Dashboard = ({ appliedjobs }) => {
           </div>
           <div className="col-lg-3 col-md-6 col-sm-6">
             <div className="card card-stats">
-              <div className="card-header card-header-danger card-header-icon">
-                <div className="card-icon">
+              <div className="card-header card-header-icon">
+                <div
+                  className="card-icon"
+                  style={{ backgroundColor: "#26c6da " }}
+                >
                   <i className="material-icons">hourglass_empty</i>
                 </div>
                 <p className="card-category">Pending Jobs</p>
@@ -62,8 +68,11 @@ const Dashboard = ({ appliedjobs }) => {
           </div>
           <div className="col-lg-3 col-md-6 col-sm-6">
             <div className="card card-stats">
-              <div className="card-header card-header-info card-header-icon">
-                <div className="card-icon">
+              <div className="card-header card-header-icon">
+                <div
+                  className="card-icon"
+                  style={{ backgroundColor: "#80deea " }}
+                >
                   <i className="material-icons">check</i>
                 </div>
                 <p className="card-category">Acepted Jobs</p>
@@ -154,7 +163,7 @@ const Dashboard = ({ appliedjobs }) => {
     </div>
   );
 };
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     appliedjobs: state.jobsState.appliedjobs,
   };

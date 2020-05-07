@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 export class FormUserDetails extends Component {
-  continue = e => {
+  continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
   };
@@ -102,8 +102,8 @@ export class FormUserDetails extends Component {
                 position: "absolute",
                 right: 0,
                 color: "white",
-                backgroundColor: "#00695c",
-                borderColor: "#00695c",
+                backgroundColor: "#006064",
+                borderColor: "#006064",
               }}
             >
               Continue

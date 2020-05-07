@@ -9,7 +9,7 @@ const Table = ({ jobs }) => {
         <div className="row">
           <div className="col-md-12">
             <div className="card">
-              <div className="card-header card-header-primary">
+              <div className="card-header card-header-warning">
                 <h4 className="card-title ">MY JOBS</h4>
               </div>
               <div className="card-body">
@@ -57,7 +57,7 @@ const Table = ({ jobs }) => {
     </div>
   );
 };
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     jobs: state.jobsState.clientjobs,
   };

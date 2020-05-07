@@ -20,7 +20,7 @@ import test from "../../assets/images/test1.png";
 import profile from "../../assets/images/profile.png";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
   },
@@ -83,11 +83,11 @@ const JobCard = ({ job, appliedjobs, applyToJob }) => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          {!appliedjobs.filter(appliedjob => appliedjob.job.id === job.id)
+          {!appliedjobs.filter((appliedjob) => appliedjob.job.id === job.id)
             .length ? (
             <Button
               variant="contained"
-              style={{ backgroundColor: "#669999", color: "white" }}
+              style={{ backgroundColor: "#006064", color: "white" }}
               className={classes.button}
               endIcon={<Icon>check_circle_outline</Icon>}
               onClick={() => applyToJob(job.id)}
@@ -135,15 +135,15 @@ const JobCard = ({ job, appliedjobs, applyToJob }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     appliedjobs: state.jobsState.appliedjobs,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    applyToJob: job_id => dispatch(actions.applyToJob(job_id)),
+    applyToJob: (job_id) => dispatch(actions.applyToJob(job_id)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(JobCard);

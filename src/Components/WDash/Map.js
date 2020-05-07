@@ -16,7 +16,7 @@ import {
 
 const Maps = ({ jobs, applyToJob, appliedjobs }) => {
   const [selectedJob, setSelectedJob] = useState(null);
-  const markerslist = jobs.map(job => (
+  const markerslist = jobs.map((job) => (
     <Marker
       position={{ lat: job.latitude, lng: job.longitude }}
       onClick={() => setSelectedJob(job)}
@@ -76,16 +76,17 @@ const Maps = ({ jobs, applyToJob, appliedjobs }) => {
                 No. Workers: {selectedJob.no_of_workers}
               </p>
               {!appliedjobs.filter(
-                appliedjob => appliedjob.job.id === selectedJob.id
+                (appliedjob) => appliedjob.job.id === selectedJob.id
               ).length ? (
                 <button
                   className="btn btn-primary btn-sm"
                   onClick={() => applyToJob(selectedJob.id)}
+                  style={{ backgroundColor: "#006064", borderColor: "#006064" }}
                 >
                   Apply
                 </button>
               ) : (
-                <h6 className="card-subtitle mb-2" style={{ color: "green" }}>
+                <h6 className="card-subtitle mb-2" style={{ color: "#006064" }}>
                   Already Applied
                 </h6>
               )}
@@ -109,15 +110,15 @@ const Maps = ({ jobs, applyToJob, appliedjobs }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     jobs: state.jobsState.jobs,
     appliedjobs: state.jobsState.appliedjobs,
   };
 };
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    applyToJob: job_id => dispatch(actions.applyToJob(job_id)),
+    applyToJob: (job_id) => dispatch(actions.applyToJob(job_id)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Maps);

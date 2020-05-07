@@ -8,10 +8,10 @@ class Login extends Component {
     password: "",
   };
 
-  handleChange = event =>
+  handleChange = (event) =>
     this.setState({ [event.target.name]: event.target.value });
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     this.props.login(this.state, this.props.history);
   };
@@ -34,7 +34,7 @@ class Login extends Component {
               <div className="card-body">
                 <form onSubmit={this.handleSubmit}>
                   <div className="form-group">
-                    <label htmlFor="username" style={{ color: "#00695c" }}>
+                    <label htmlFor="username" style={{ color: "#006064" }}>
                       Username
                     </label>
                     <input
@@ -49,7 +49,7 @@ class Login extends Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="password" style={{ color: "#00695c" }}>
+                    <label htmlFor="password" style={{ color: "#006064" }}>
                       Password
                     </label>
                     <input
@@ -71,8 +71,8 @@ class Login extends Component {
                     type="submit"
                     className="btn btn-primary"
                     style={{
-                      backgroundColor: "#00695c ",
-                      borderColor: "#00695c",
+                      backgroundColor: "#006064 ",
+                      borderColor: "#006064",
                       color: "white",
                     }}
                   >
@@ -82,7 +82,7 @@ class Login extends Component {
                   <Link
                     to="/register"
                     className="btn btn-link my-2 my-sm-0"
-                    style={{ color: "#00695c" }}
+                    style={{ color: "#006064" }}
                   >
                     Signup for an account
                   </Link>
@@ -95,14 +95,14 @@ class Login extends Component {
     );
   }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.userState.user,
     errors: state.errorsState,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     login: (userData, history) => dispatch(actions.login(userData, history)),
   };

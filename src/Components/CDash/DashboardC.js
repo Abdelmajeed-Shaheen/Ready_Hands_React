@@ -16,9 +16,9 @@ class DashboardC extends Component {
   render() {
     const { jobs, history, acceptApplicant } = this.props;
     const totaljobs = jobs.length;
-    const pendingjobs = jobs.filter(job => job.status === "P");
-    const selectedjobs = jobs.filter(job => job.status === "S");
-    const finishedjobs = jobs.filter(job => job.status === "FI");
+    const pendingjobs = jobs.filter((job) => job.status === "P");
+    const selectedjobs = jobs.filter((job) => job.status === "S");
+    const finishedjobs = jobs.filter((job) => job.status === "FI");
     return (
       <div className="content">
         <div className="container-fluid">
@@ -28,7 +28,7 @@ class DashboardC extends Component {
                 <div className="card-header card-header-warning card-header-icon">
                   <div
                     className="card-icon"
-                    style={{ backgroundColor: "#dce775" }}
+                    style={{ backgroundColor: "#00838f" }}
                   >
                     <i className="material-icons">work_outline</i>
                   </div>
@@ -42,8 +42,11 @@ class DashboardC extends Component {
             </div>
             <div className="col-lg-3 col-md-6 col-sm-6">
               <div className="card card-stats">
-                <div className="card-header card-header-success card-header-icon">
-                  <div className="card-icon">
+                <div className="card-header card-header-icon">
+                  <div
+                    className="card-icon"
+                    style={{ backgroundColor: "#00acc1" }}
+                  >
                     <i className="material-icons">hourglass_empty</i>
                   </div>
                   <p className="card-category">Pending Jobs</p>
@@ -58,8 +61,11 @@ class DashboardC extends Component {
             </div>
             <div className="col-lg-3 col-md-6 col-sm-6">
               <div className="card card-stats">
-                <div className="card-header card-header-info card-header-icon">
-                  <div className="card-icon">
+                <div className="card-header card-header-icon">
+                  <div
+                    className="card-icon"
+                    style={{ backgroundColor: "#26c6da " }}
+                  >
                     <i className="material-icons">check</i>
                   </div>
                   <p className="card-category">Selected Jobs</p>
@@ -74,8 +80,11 @@ class DashboardC extends Component {
             </div>
             <div className="col-lg-3 col-md-6 col-sm-6">
               <div className="card card-stats">
-                <div className="card-header card-header-danger card-header-icon">
-                  <div className="card-icon">
+                <div className="card-header card-header-icon">
+                  <div
+                    className="card-icon"
+                    style={{ backgroundColor: "#80deea " }}
+                  >
                     <i className="material-icons">assignment_turned_in</i>
                   </div>
                   <p className="card-category">Finished Jobs</p>
@@ -116,6 +125,10 @@ class DashboardC extends Component {
                           <td>
                             <button
                               className="btn btn-success btn-sm"
+                              style={{
+                                backgroundColor: "#006064",
+                                borderColor: "#006064",
+                              }}
                               onClick={() =>
                                 this.props.getJobApplicants(job.id)
                               }
@@ -140,11 +153,19 @@ class DashboardC extends Component {
                   style={{ overflowY: "auto", height: "500px" }}
                 >
                   {!this.state.jobapplicants ? (
-                    <div class="alert alert-warning" role="alert">
+                    <div
+                      class="alert alert-warning"
+                      role="alert"
+                      style={{ backgroundColor: "#ffcc80" }}
+                    >
                       Please Select A Job
                     </div>
                   ) : this.state.jobapplicants.length === 0 ? (
-                    <div class="alert alert-warning" role="alert">
+                    <div
+                      class="alert alert-warning"
+                      role="alert"
+                      style={{ backgroundColor: "#ffcc80" }}
+                    >
                       This job has No APPLICANTS
                     </div>
                   ) : (
@@ -175,6 +196,10 @@ class DashboardC extends Component {
                             <td>
                               <button
                                 className="btn btn-primary btn-sm"
+                                style={{
+                                  backgroundColor: "#006064",
+                                  borderColor: "#006064",
+                                }}
                                 onClick={() => acceptApplicant(job.id, history)}
                               >
                                 Accept
@@ -194,15 +219,15 @@ class DashboardC extends Component {
     );
   }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     jobs: state.jobsState.clientjobs,
     jobapplicants: state.jobsState.jobapplicants,
   };
 };
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getJobApplicants: job_id => dispatch(actions.getJobApplicants(job_id)),
+    getJobApplicants: (job_id) => dispatch(actions.getJobApplicants(job_id)),
     acceptApplicant: (applicant_id, history) =>
       dispatch(actions.acceptApplicant(applicant_id, history)),
   };

@@ -28,7 +28,10 @@ class MapPicker extends Component {
   render() {
     return (
       <div>
-        <div className="alert alert-success" style={{ fontWeight: "bolder" }}>
+        <div
+          className="alert alert-success"
+          style={{ fontWeight: "bolder", backgroundColor: "#ffcc80" }}
+        >
           {this.state.address}
         </div>
         <div>

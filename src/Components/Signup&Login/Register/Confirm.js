@@ -4,7 +4,7 @@ import * as actions from "../../../redux/actions";
 import { List, ListItem, ListItemText } from "@material-ui/core/";
 
 export class Confirm extends Component {
-  confirm = values => {
+  confirm = (values) => {
     const userData = {
       username: values.username,
       password: values.password,
@@ -26,7 +26,7 @@ export class Confirm extends Component {
     this.props.signup(userData, this.props.history, clientorworker, type);
   };
 
-  back = e => {
+  back = (e) => {
     e.preventDefault();
     this.props.prevStep();
   };
@@ -78,8 +78,8 @@ export class Confirm extends Component {
                 position: "absolute",
                 right: 0,
                 color: "white",
-                backgroundColor: "#00695c",
-                borderColor: "#00695c",
+                backgroundColor: "#006064",
+                borderColor: "#006064",
               }}
             >
               Confirm
@@ -90,6 +90,8 @@ export class Confirm extends Component {
               style={{
                 position: "absolute",
                 left: 0,
+                backgroundColor: "#ffb74d ",
+                borderColor: "#ffb74d ",
               }}
             >
               Back
@@ -101,13 +103,13 @@ export class Confirm extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     errors: state.errorsState,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     signup: (userData, history, clientorworker, type) =>
       dispatch(actions.signup(userData, history, clientorworker, type)),
