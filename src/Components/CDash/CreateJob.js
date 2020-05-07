@@ -17,10 +17,10 @@ class CreateJob extends Component {
     latitude: "",
     gender: "",
   };
-  handleChange = (event) =>
+  handleChange = event =>
     this.setState({ [event.target.name]: event.target.value });
 
-  setlonglat = (position) => {
+  setlonglat = position => {
     const lat = position.lat;
     const lng = position.lng;
     this.setState({ longitude: lng, latitude: lat });
@@ -51,7 +51,7 @@ class CreateJob extends Component {
         </label>
       );
     }
-    const serviceslist = this.props.services.map((service) => (
+    const serviceslist = this.props.services.map(service => (
       <label
         className="dropdown-item"
         onClick={() => this.setState({ service: service.title })}
@@ -123,7 +123,7 @@ class CreateJob extends Component {
                           data-enable-time
                           className="string"
                           value={date_from}
-                          onChange={(date_from) => {
+                          onChange={date_from => {
                             this.setState({
                               date_from: date_from[0].toISOString(),
                             });
@@ -137,43 +137,11 @@ class CreateJob extends Component {
                         <Flatpickr
                           data-enable-time
                           value={date_to}
-                          onChange={(date_to) => {
+                          onChange={date_to => {
                             this.setState({
                               date_to: date_to[0].toISOString(),
                             });
                           }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label>Latitude</label>
-                        <input
-                          type="number"
-                          className="form-control"
-                          id="latitude"
-                          value={latitude}
-                          name="latitude"
-                          onChange={this.handleChange}
-                          disabled
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label>Longitude</label>
-                        <input
-                          type="number"
-                          className="form-control"
-                          id="longitude"
-                          value={longitude}
-                          name="longitude"
-                          onChange={this.handleChange}
-                          disabled
-                          required
                         />
                       </div>
                     </div>
@@ -281,13 +249,13 @@ class CreateJob extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     services: state.jobsState.services,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     createJob: (job, history) => dispatch(actions.createJob(job, history)),
   };

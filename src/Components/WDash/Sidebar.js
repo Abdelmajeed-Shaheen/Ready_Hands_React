@@ -21,17 +21,6 @@ const Sidebar = ({ location, user }) => {
           </li>
           <li
             className={`nav-item ${
-              location.pathname === "/worker/dashboard/profile" && "active"
-            }`}
-          >
-            <Link className="nav-link" to="/worker/dashboard/profile">
-              <i className="material-icons">person</i>
-              <p>Profile</p>
-            </Link>
-          </li>
-
-          <li
-            className={`nav-item ${
               location.pathname === "/worker/dashboard/jobs/list" && "active"
             }`}
           >

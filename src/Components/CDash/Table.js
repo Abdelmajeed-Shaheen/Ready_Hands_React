@@ -14,11 +14,12 @@ const Table = ({ jobs }) => {
               </div>
               <div className="card-body">
                 <div className="table-responsive">
-                  <table className="table text-center">
+                  <table className="table">
                     <thead className=" text-primary">
                       <th>ID</th>
                       <th>Title</th>
                       <th>Date From</th>
+                      <th>Date To</th>
                       <th>Price</th>
                       <th>Status</th>
                     </thead>
@@ -27,8 +28,9 @@ const Table = ({ jobs }) => {
                         <tr>
                           <td>{index + 1}</td>
                           <td>{job.title}</td>
-                          <td>{moment(job.date_from).format("llll")}</td>
-                          <td>{job.price}JOD</td>
+                          <td>{moment(job.date_from).format("lll")}</td>
+                          <td>{moment(job.date_to).format("lll")}</td>
+                          <td>{job.price} JOD</td>
                           {job.status === "P" && (
                             <td style={{ color: "orange", fontWeight: "bold" }}>
                               PENDING
@@ -57,7 +59,7 @@ const Table = ({ jobs }) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     jobs: state.jobsState.clientjobs,
   };
