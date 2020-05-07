@@ -166,7 +166,7 @@ class DashboardC extends Component {
                       role="alert"
                       style={{ backgroundColor: "#ffcc80" }}
                     >
-                      This job has No APPLICANTS
+                      This job has No Applicants {/*user friendly*/}
                     </div>
                   ) : (
                     <table className="table table-hover">
