@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 export class FormUserDetails extends Component {
-  continue = (e) => {
+  continue = e => {
     e.preventDefault();
     this.props.nextStep();
   };

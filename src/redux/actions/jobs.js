@@ -4,6 +4,7 @@ import {
   GET_WORKER_APPLIED_JOBS,
   GET_SERVICES,
   GET_CLIENT_JOBS_APPLICANTS,
+  NAVIGATE_TO_MAP,
 } from "./actionTypes";
 import { instance } from "./instance";
 
@@ -110,5 +111,15 @@ export const acceptApplicant = (applicant_id, history) => {
     } catch (err) {
       console.log(err);
     }
+  };
+};
+
+export const navigateToMAp = (job, history) => {
+  return dispatch => {
+    dispatch({
+      type: NAVIGATE_TO_MAP,
+      payload: job,
+    });
+    if (history) history.replace("/worker/dashboard/jobs/map");
   };
 };

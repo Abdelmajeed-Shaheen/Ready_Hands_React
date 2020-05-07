@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 import moment from "moment";
@@ -14,9 +14,12 @@ import {
   InfoWindow,
 } from "react-google-maps";
 
-const Maps = ({ jobs, applyToJob, appliedjobs }) => {
-  const [selectedJob, setSelectedJob] = useState(null);
-  const markerslist = jobs.map((job) => (
+const Maps = ({ jobs, applyToJob, appliedjobs, mappinjob, navigateToMAp }) => {
+  useEffect(() => {
+    navigateToMAp(null);
+  }, []);
+  const [selectedJob, setSelectedJob] = useState(mappinjob);
+  const markerslist = jobs.map(job => (
     <Marker
       position={{ lat: job.latitude, lng: job.longitude }}
       onClick={() => setSelectedJob(job)}
@@ -76,7 +79,7 @@ const Maps = ({ jobs, applyToJob, appliedjobs }) => {
                 No. Workers: {selectedJob.no_of_workers}
               </p>
               {!appliedjobs.filter(
-                (appliedjob) => appliedjob.job.id === selectedJob.id
+                appliedjob => appliedjob.job.id === selectedJob.id
               ).length ? (
                 <button
                   className="btn btn-primary btn-sm"
@@ -110,15 +113,17 @@ const Maps = ({ jobs, applyToJob, appliedjobs }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     jobs: state.jobsState.jobs,
     appliedjobs: state.jobsState.appliedjobs,
+    mappinjob: state.jobsState.mappinjob,
   };
 };
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    applyToJob: (job_id) => dispatch(actions.applyToJob(job_id)),
+    applyToJob: job_id => dispatch(actions.applyToJob(job_id)),
+    navigateToMAp: () => dispatch(actions.navigateToMAp()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Maps);

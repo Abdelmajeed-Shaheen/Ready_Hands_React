@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SidebarC = ({ location }) => {
+const SidebarC = ({ location, user }) => {
   return (
     <div className="sidebar" data-color="purple" data-background-color="white">
       <div className="logo">
-        <span className="simple-text logo-normal">Ready Hands</span>
+        <span className="simple-text logo-normal">{user}</span>
       </div>
       <div className="sidebar-wrapper">
         <ul className="nav">

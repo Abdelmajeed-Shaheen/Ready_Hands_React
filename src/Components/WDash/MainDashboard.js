@@ -10,6 +10,7 @@ const MainDashboard = ({
   user,
   getAllJobs,
   getWorkerAppliedJobs,
+  history,
 }) => {
   getAllJobs();
   getWorkerAppliedJobs();
@@ -17,7 +18,7 @@ const MainDashboard = ({
   return (
     <div className="wrapper">
       <Sidebar location={location} user={user.user.username} />
-      <MainPanel location={location} />
+      <MainPanel location={location} history={history} />
     </div>
   );
 };

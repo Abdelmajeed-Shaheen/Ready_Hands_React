@@ -4,6 +4,7 @@ import {
   GET_WORKER_APPLIED_JOBS,
   GET_SERVICES,
   GET_CLIENT_JOBS_APPLICANTS,
+  NAVIGATE_TO_MAP,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   appliedjobs: [],
   services: [],
   jobapplicants: [],
+  mappinjob: null,
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -45,6 +47,11 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         jobapplicants: jobapplicants,
+      };
+    case NAVIGATE_TO_MAP:
+      return {
+        ...state,
+        mappinjob: payload,
       };
     default:
       return state;

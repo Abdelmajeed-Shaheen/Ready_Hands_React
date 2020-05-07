@@ -17,7 +17,7 @@ const MainDashboardC = ({
   if (!user) return <Redirect to="/home" />;
   return (
     <div className="wrapper">
-      <SidebarC location={location} />
+      <SidebarC location={location} user={user.user.username} />
       <MainPanelC location={location} history={history} />
     </div>
   );

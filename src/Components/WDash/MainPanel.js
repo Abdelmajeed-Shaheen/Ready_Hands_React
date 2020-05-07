@@ -5,10 +5,12 @@ import Profile from "./Profile";
 import JobList from "./JobList";
 import Map from "./Map";
 
-const MainPanel = ({ location }) => {
+const MainPanel = ({ location, history }) => {
   return (
     <div className="main-panel">
-      {location.pathname === "/worker/dashboard/jobs/list" && <JobList />}
+      {location.pathname === "/worker/dashboard/jobs/list" && (
+        <JobList history={history} />
+      )}
       {location.pathname === "/worker/dashboard" && <Dashboard />}
       {location.pathname === "/worker/dashboard/profile" && <Profile />}
       {location.pathname === "/worker/dashboard/jobs/map" && <Map />}

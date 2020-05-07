@@ -7,7 +7,6 @@ import moment from "moment";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
@@ -16,11 +15,13 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import test from "../../assets/images/test1.png";
+import MapIcon from "@material-ui/icons/Map";
 import profile from "../../assets/images/profile.png";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
-const useStyles = makeStyles((theme) => ({
+import Rating from "@material-ui/lab/Rating";
+
+const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: 345,
   },
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: red[500],
   },
 }));
-const JobCard = ({ job, appliedjobs, applyToJob }) => {
+const JobCard = ({ job, appliedjobs, applyToJob, navigatetomap, history }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
@@ -61,29 +62,26 @@ const JobCard = ({ job, appliedjobs, applyToJob }) => {
             />
           }
           title={job.title}
-          subheader={`from : ${moment(job.date_from).format("llll")}
-          to : ${moment(job.date_to).format("llll")} `}
-        />
-        <CardMedia
-          className={classes.media}
-          image={test}
-          title="Paella dish"
-          onClick={() =>
-            window.open(
-              "https://www.google.com/maps/search/?api=1&query=" +
-                job.latitude +
-                "," +
-                job.longitude
-            )
-          }
+          subheader={`Your Client is ${job.client.user.username}`}
         />
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Your Client is {job.client.user.username}
+          <Typography variant="overline" color="textSecondary" component="p">
+            {`From : ${moment(job.date_from).format("llll")}`}
+            <br />
+            {`To : ${moment(job.date_to).format("llll")} `}
+            <br />
+            Rating
+            <Rating
+              style={{ marginLeft: "4px" }}
+              name="read-only"
+              value={parseInt(job.rating_range)}
+              size="small"
+              readOnly
+            />
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          {!appliedjobs.filter((appliedjob) => appliedjob.job.id === job.id)
+          {!appliedjobs.filter(appliedjob => appliedjob.job.id === job.id)
             .length ? (
             <Button
               variant="contained"
@@ -98,14 +96,20 @@ const JobCard = ({ job, appliedjobs, applyToJob }) => {
             <Typography
               variant="body2"
               component="p"
-              style={{ color: "green" }}
+              style={{ color: "#006064" }}
             >
-              You Applied For This Job
+              Already Applied
             </Typography>
           )}
-
           <IconButton
-            className={clsx(classes.expand, {
+            aria-label="show more"
+            style={{ marginLeft: "auto" }}
+            onClick={() => navigatetomap(job, history)}
+          >
+            <MapIcon />
+          </IconButton>
+          <IconButton
+            className={clsx({
               [classes.expandOpen]: expanded,
             })}
             onClick={handleExpandClick}
@@ -117,16 +121,19 @@ const JobCard = ({ job, appliedjobs, applyToJob }) => {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>Service Type: {job.service.title}</Typography>
-            <Typography paragraph>Price: {job.price}JD</Typography>
-            <Typography paragraph>
-              Starts at: {job.date_from.substring(11, 16)}
+            <Typography variant="overline">
+              Service Type: {job.service.title}
             </Typography>
-            <Typography paragraph>
-              Minimum Rating: {job.rating_range}
+            <br />
+            <Typography variant="overline">Price: {job.price}JD</Typography>
+            <br />
+            <Typography variant="overline">
+              Number of Workers: {job.no_of_workers}
             </Typography>
-            <Typography paragraph>
-              Number of Workers: {job.no_of_workers} , Gender: {job.gender}
+            <br />
+            <Typography variant="overline">
+              Gender:
+              {!job.gender ? "ANY" : job.gender === "M" ? "Male" : "Female"}
             </Typography>
           </CardContent>
         </Collapse>
@@ -135,15 +142,17 @@ const JobCard = ({ job, appliedjobs, applyToJob }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     appliedjobs: state.jobsState.appliedjobs,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    applyToJob: (job_id) => dispatch(actions.applyToJob(job_id)),
+    applyToJob: job_id => dispatch(actions.applyToJob(job_id)),
+    navigatetomap: (job, history) =>
+      dispatch(actions.navigateToMAp(job, history)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(JobCard);

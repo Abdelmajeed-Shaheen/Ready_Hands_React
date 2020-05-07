@@ -3,8 +3,8 @@ import JobCard from "./JobCard";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 
-const JobList = ({ jobs }) => {
-  const jobslist = jobs.map(job => <JobCard job={job} />);
+const JobList = ({ jobs, history }) => {
+  const jobslist = jobs.map(job => <JobCard job={job} history={history} />);
   return (
     <div className="container py-5">
       <Grid container spacing={4}>

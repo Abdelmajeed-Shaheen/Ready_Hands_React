@@ -10,7 +10,9 @@ const Home = ({ user }) => {
           <div className="row h-100 align-items-center justify-content-center text-center">
             <div className="col-lg-10 align-self-end">
               <h1 className="text-uppercase text-white font-weight-bold">
-                The Service You Want , When Ever You Need
+                The Service You Want
+                <br />
+                When Ever You Need
               </h1>
             </div>
             <div className="col-lg-8 align-self-baseline">
