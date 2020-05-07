@@ -37,7 +37,7 @@ export class ClientOrWorker extends Component {
                   className=" btn btn-block homebtn"
                   onClick={() => settype("worker")}
                 >
-                  I am A Worker
+                  Signup as Worker {/* Hamza's first note*/}
                 </button>
               </div>
               <div className="col">
@@ -45,7 +45,7 @@ export class ClientOrWorker extends Component {
                   className=" btn btn-block homebtn"
                   onClick={() => settype("client")}
                 >
-                  I am A Client
+                  Signup as Client {/* Hamza's first note*/}
                 </button>
               </div>
             </div>
