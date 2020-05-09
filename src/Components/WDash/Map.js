@@ -28,7 +28,7 @@ const Maps = ({ jobs, applyToJob, appliedjobs, mappinjob, navigateToMAp }) => {
   const CustomSkinMap = withScriptjs(
     withGoogleMap(() => (
       <GoogleMap
-        defaultZoom={15}
+        defaultZoom={13}
         defaultCenter={{
           lat: 31.9506347,
           lng: 35.9208867,
