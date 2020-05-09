@@ -3,11 +3,21 @@ import { connect } from "react-redux";
 
 const Dashboard = ({ appliedjobs }) => {
   let totalincome = 0.0;
+  let workedincome = 0.0;
   const totaljobs = appliedjobs.length;
   const acceptedjobs = appliedjobs.filter(job => job.acccepted === true);
-  const pendingjobs = appliedjobs.filter(job => job.acccepted === false);
+  const pendingjobs = appliedjobs.filter(
+    job => job.acccepted === false && job.job.status === "P"
+  );
+  const unacceptedjobs = appliedjobs.filter(
+    job => job.acccepted === false && job.job.status !== "P"
+  );
   acceptedjobs.map(
-    job => (totalincome = totalincome + parseFloat(job.job.price))
+    job => (
+      (totalincome = totalincome + parseFloat(job.job.price)),
+      job.job.status === "FI" &&
+        (workedincome = workedincome + parseFloat(job.job.price))
+    )
   );
   return (
     <div className="content">
@@ -40,7 +50,9 @@ const Dashboard = ({ appliedjobs }) => {
                   <i className="material-icons">account_balance_wallet</i>
                 </div>
                 <p className="card-category">Revenue</p>
-                <h3 className="card-title">{totalincome}JOD</h3>
+                <h3 className="card-title">
+                  {workedincome}/{totalincome}JOD
+                </h3>
               </div>
               <div className="card-footer">
                 <div className="stats"></div>
@@ -56,9 +68,9 @@ const Dashboard = ({ appliedjobs }) => {
                 >
                   <i className="material-icons">hourglass_empty</i>
                 </div>
-                <p className="card-category">Pending Jobs</p>
+                <p className="card-category">Un Accepted Jobs</p>
                 <h3 className="card-title">
-                  {pendingjobs.length}/{totaljobs}
+                  {unacceptedjobs.length}/{totaljobs}
                 </h3>
               </div>
               <div className="card-footer">
